@@ -38,12 +38,12 @@ const generateShareMessage = (headerTitle: string, list: Item[]) =>
           (item.done ? '\u2611' : '\u2610') +
           ' ' +
           item.title +
-          ' ' +
-          item.description +
-          ' ' +
-          new Date(item?.date as unknown as string).toLocaleDateString() +
-          '  ' +
-          item.time?.toLocaleTimeString() +
+          (item.description ? '\n' + item.description : '') +
+          (item?.date
+            ? '\n' +
+              new Date(item?.date as unknown as string).toLocaleDateString()
+            : '') +
+          (item.time ? ' ' + item.time?.toLocaleTimeString() : '') +
           '\n'
         );
       } else {
@@ -51,8 +51,7 @@ const generateShareMessage = (headerTitle: string, list: Item[]) =>
           (item.done ? '\u2611' : '\u2610') +
           ' ' +
           item.title +
-          ' ' +
-          item.description +
+          (item.description ? '\n' + item.description : '') +
           '\n'
         );
       }
