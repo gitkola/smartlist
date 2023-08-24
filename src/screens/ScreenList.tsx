@@ -97,7 +97,11 @@ export default function ScreenList({
       <Appbar
         elevated
         safeAreaInsets={{top}}
-        style={{height: 100, backgroundColor: theme.colors.primary}}>
+        style={{
+          height: 100,
+          backgroundColor: theme.colors.primary,
+          // position: 'absolute',
+        }}>
         <Appbar.Action
           icon={'menu'}
           iconColor={theme.colors.onPrimary}
@@ -172,7 +176,7 @@ export default function ScreenList({
           right: 24,
           bottom: 24,
           borderRadius: 60,
-          backgroundColor: theme.colors.primary,
+          backgroundColor: theme.colors.secondary,
         }}
       />
     </VStack>

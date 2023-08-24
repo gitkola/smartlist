@@ -97,7 +97,9 @@ export default function ListItem({
       style={{
         height,
       }}>
-      {index === 0 && <Divider />}
+      {index === 0 && (
+        <Divider style={{backgroundColor: theme.colors.outline}} />
+      )}
       <Swipeable
         ref={swipeable}
         renderRightActions={rightButtons}
@@ -118,6 +120,8 @@ export default function ListItem({
             <Checkbox.Android
               status={listItem.done ? 'checked' : 'unchecked'}
               onPress={() => toggle(listItem.id)}
+              color={theme.colors.secondary}
+              uncheckedColor={theme.colors.secondary}
             />
           </View>
           <TouchableOpacity
@@ -164,7 +168,8 @@ export default function ListItem({
                         color: theme.colors.onSurfaceDisabled,
                         fontSize: 12,
                       }}>
-                      {listItem.time?.toLocaleTimeString()}
+                      {typeof listItem.time?.toLocaleTimeString ===
+                        'function' && listItem.time?.toLocaleTimeString()}
                     </Text>
                   )}
                 </HStack>
@@ -174,7 +179,9 @@ export default function ListItem({
           </TouchableOpacity>
         </HStack>
       </Swipeable>
-      {index === list.length - 1 && <Divider />}
+      {index === list.length - 1 && (
+        <Divider style={{backgroundColor: theme.colors.outline}} />
+      )}
     </Animated.View>
   );
 }

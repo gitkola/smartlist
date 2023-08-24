@@ -2,7 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {PaperProvider} from 'react-native-paper';
+import {PaperProvider, MD3LightTheme} from 'react-native-paper';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import DrawerContent from './components/DrawerContent';
@@ -12,10 +12,13 @@ import ModalAddTodo from './screens/AddTodoScreen';
 import ModalEditTodo from './screens/EditTodoScreen';
 import ModalAddTobuy from './screens/AddTobuyScreen';
 import ModalEditTobuy from './screens/EditTobuyScreen';
+import useSettingsTheme from './store/settingsStore';
+import ColorsScreen from './screens/ColorsScreen';
 
 type DrawerParamsList = {
   todostack: undefined;
   tobuystack: undefined;
+  colors: undefined;
 };
 
 type TodoStackParamList = {
@@ -75,15 +78,25 @@ const TobuyStackNavigator = () => (
 );
 
 export default function App(): JSX.Element {
+  const settingsTheme = useSettingsTheme();
+  const SettingsTheme = {
+    ...MD3LightTheme,
+    colors: {
+      ...MD3LightTheme.colors,
+      ...settingsTheme.colors,
+    },
+  };
+
   return (
     <GestureHandlerRootView style={{flex: 1}}>
-      <PaperProvider>
+      <PaperProvider theme={SettingsTheme}>
         <NavigationContainer>
           <Drawer.Navigator
             drawerContent={DrawerContent}
             screenOptions={{headerShown: false}}>
             <Drawer.Screen name="todostack" component={TodoStackNavigator} />
             <Drawer.Screen name="tobuystack" component={TobuyStackNavigator} />
+            <Drawer.Screen name="colors" component={ColorsScreen} />
           </Drawer.Navigator>
         </NavigationContainer>
       </PaperProvider>

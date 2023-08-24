@@ -11,8 +11,6 @@ import DraggableFlatList, {
 } from 'react-native-draggable-flatlist';
 import {TouchableOpacity} from 'react-native';
 
-const renderDivider = () => <Divider />;
-
 type ListProps = {
   list: Todo[] | Tobuy[];
   editListItemRoute: string;
@@ -31,6 +29,10 @@ export default function List({
   setList,
 }: ListProps) {
   const theme = useTheme();
+
+  const renderDivider = () => (
+    <Divider style={{backgroundColor: theme.colors.outline}} />
+  );
 
   const renderItem = ({
     item,
