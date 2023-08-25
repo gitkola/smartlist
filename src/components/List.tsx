@@ -9,7 +9,7 @@ import DraggableFlatList, {
   OpacityDecorator,
   RenderItemParams,
 } from 'react-native-draggable-flatlist';
-import {TouchableOpacity} from 'react-native';
+import {Platform, TouchableOpacity} from 'react-native';
 
 type ListProps = {
   list: Todo[] | Tobuy[];
@@ -81,7 +81,7 @@ export default function List({
         paddingBottom: 100,
       }}
       containerStyle={{
-        marginBottom: 100,
+        paddingTop: Platform.OS === 'ios' ? 90 : 60,
       }}
     />
   );

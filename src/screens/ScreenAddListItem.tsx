@@ -2,10 +2,9 @@ import React, {useState} from 'react';
 import {View} from 'react-native';
 import {HStack, VStack} from '@react-native-material/core';
 import {useNavigation} from '@react-navigation/native';
-import {Appbar, Text, TextInput, useTheme} from 'react-native-paper';
+import {Appbar, TextInput, useTheme} from 'react-native-paper';
 import DismissKeyboardWithAvoidingView from '../hocs/DismissKeyboardWithAvoidingView';
-import DateTimePicker from '@react-native-community/datetimepicker';
-import {Switch} from 'react-native-gesture-handler';
+import DateTimeCustomPicker from '../components/DateTimeCustomPicker';
 
 type ScreenAddListItemProps = {
   newTitle: string;
@@ -97,72 +96,32 @@ const ScreenAddListItem = ({
             />
           </HStack>
           {setNewDate && (
-            <HStack items="center" justify="between">
-              <Text
-                style={{
-                  fontSize: 18,
-                  color: theme.colors.onBackground,
-                }}>
-                Date
-              </Text>
-              <DateTimePicker
-                value={new Date((newDate as Date) || Date.now())}
-                mode={'date'}
-                is24Hour={true}
-                display="spinner"
-                style={{
-                  height: 120,
-                  width: 250,
-                }}
-                onChange={(e, value) => {
-                  setNewDate(value);
-                }}
-                disabled={!applyDate}
-              />
-              <Switch
-                value={applyDate}
-                onValueChange={value => {
-                  setApplyDate(value);
-                  if (!value) {
-                    setNewDate(undefined);
-                  }
-                }}
-              />
-            </HStack>
+            <DateTimeCustomPicker
+              mode="date"
+              value={newDate as Date}
+              onChange={setNewDate}
+              apply={applyDate}
+              onApplyChange={value => {
+                setApplyDate(value);
+                if (!value) {
+                  setNewDate(undefined);
+                }
+              }}
+            />
           )}
           {setNewTime && (
-            <HStack items="center" justify="between">
-              <Text
-                style={{
-                  fontSize: 18,
-                  color: theme.colors.onBackground,
-                }}>
-                Time
-              </Text>
-              <DateTimePicker
-                value={new Date((newTime as Date) || Date.now())}
-                mode={'time'}
-                is24Hour={true}
-                display={'spinner'}
-                style={{
-                  height: 120,
-                  width: 250,
-                }}
-                onChange={(e, value) => {
-                  setNewTime(value);
-                }}
-                disabled={!applyTime}
-              />
-              <Switch
-                value={applyTime}
-                onValueChange={value => {
-                  setApplyTime(value);
-                  if (!value) {
-                    setNewTime(undefined);
-                  }
-                }}
-              />
-            </HStack>
+            <DateTimeCustomPicker
+              mode="time"
+              value={newTime as Date}
+              onChange={setNewTime}
+              apply={applyTime}
+              onApplyChange={value => {
+                setApplyTime(value);
+                if (!value) {
+                  setNewTime(undefined);
+                }
+              }}
+            />
           )}
         </VStack>
       </View>

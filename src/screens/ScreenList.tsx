@@ -2,7 +2,7 @@ import React from 'react';
 import {VStack} from '@react-native-material/core';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Appbar, FAB, useTheme, Menu} from 'react-native-paper';
-import {StatusBar} from 'react-native';
+import {Platform, StatusBar} from 'react-native';
 import type {Todo} from '../store/todoStore';
 import type {Tobuy} from '../store/tobuyStore';
 import {useState} from 'react';
@@ -93,14 +93,25 @@ export default function ScreenList({
 
   return (
     <VStack fill style={{backgroundColor: theme.colors.background}}>
+      <List
+        list={colorAndDoneFiltered}
+        editListItemRoute={editListItemRoute}
+        remove={remove}
+        toggle={toggle}
+        updateColor={updateColor}
+        setList={setList}
+      />
       <StatusBar barStyle={'light-content'} />
       <Appbar
         elevated
         safeAreaInsets={{top}}
         style={{
-          height: 100,
+          height: Platform.OS === 'ios' ? 90 : 60,
           backgroundColor: theme.colors.primary,
-          // position: 'absolute',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
         }}>
         <Appbar.Action
           icon={'menu'}
@@ -157,14 +168,6 @@ export default function ScreenList({
           }}
         />
       </Appbar>
-      <List
-        list={colorAndDoneFiltered}
-        editListItemRoute={editListItemRoute}
-        remove={remove}
-        toggle={toggle}
-        updateColor={updateColor}
-        setList={setList}
-      />
       <FAB
         mode="elevated"
         icon={'plus'}

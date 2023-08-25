@@ -3,6 +3,7 @@ import {create} from 'zustand';
 import {createJSONStorage, persist} from 'zustand/middleware';
 
 type ThemeColors = {
+  id: number;
   primary: string;
   secondary: string;
   background: string;
@@ -18,14 +19,11 @@ const useSettingsTheme = create<Store, [['zustand/persist', unknown]]>(
   persist(
     set => ({
       colors: {
-        // primary: '#A4D0A4',
-        // secondary: '#617A55',
-        // background: '#FFF8D6',
-        // surface: '#F7E1AE',
-        primary: '#8B1874',
-        secondary: '#B71375',
-        background: '#FC4F00',
-        surface: '#F79540',
+        id: 0,
+        primary: '#6527BE',
+        secondary: '#9681EB',
+        background: '#DDDDDD',
+        surface: '#FFFFFF',
       },
       setTheme(themeColors: ThemeColors) {
         set((state: Store) => ({
