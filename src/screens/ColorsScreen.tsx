@@ -12,85 +12,85 @@ const colorSchemas = [
     id: 0,
     primary: '#6527BE',
     secondary: '#9681EB',
-    background: '#DDDDDD',
     surface: '#FFFFFF',
+    background: '#DDDDDD',
   },
   {
     id: 1,
     primary: '#6527BE',
     secondary: '#45CFDD',
-    background: '#DDDDDD',
     surface: '#FFFFFF',
+    background: '#DDDDDD',
   },
   {
     id: 2,
-    primary: '#6527BE',
-    secondary: '#9681EB',
-    background: '#A7EDE7',
-    surface: '#45CFDD',
+    primary: '#45CFDD',
+    secondary: '#6527BE',
+    surface: '#FFFFFF',
+    background: '#DDDDDD',
   },
   {
     id: 3,
     primary: '#793FDF',
     secondary: '#7091F5',
-    background: '#97FFF4',
     surface: '#FFFD8C',
+    background: '#97FFF4',
   },
   {
     id: 4,
     primary: '#313866',
     secondary: '#504099',
-    background: '#974EC3',
     surface: '#FE7BE5',
+    background: '#974EC3',
   },
   {
     id: 5,
     primary: '#191D88',
     secondary: '#1450A3',
-    background: '#337CCF',
     surface: '#FFC436',
+    background: '#337CCF',
   },
   {
     id: 6,
     primary: '#FF9B9B',
     secondary: '#FFD6A5',
-    background: '#FFFEC4',
     surface: '#CBFFA9',
+    background: '#FFFEC4',
   },
   {
     id: 7,
     primary: '#0C356A',
     secondary: '#279EFF',
-    background: '#40F8FF',
     surface: '#D5FFD0',
+    background: '#40F8FF',
   },
   {
     id: 8,
     primary: '#DFD7BF',
     secondary: '#3F2305',
-    background: '#F5F5F5',
     surface: '#F2EAD3',
+    background: '#F5F5F5',
   },
   {
     id: 9,
     primary: '#A4D0A4',
     secondary: '#A4907C',
-    background: '#98EECC',
     surface: '#D0F5BE',
+    background: '#98EECC',
   },
   {
     id: 10,
     primary: '#A4907C',
     secondary: '#617A55',
-    background: '#FFF8D6',
     surface: '#F7E1AE',
+    background: '#FFF8D6',
   },
   {
     id: 11,
     primary: '#A4D0A4',
     secondary: '#617A55',
-    background: '#FFF8D6',
     surface: '#F7E1AE',
+    background: '#FFF8D6',
   },
 ];
 
@@ -120,7 +120,7 @@ export default function ColorsScreen() {
                   bg={'#CCC'}
                   style={{
                     borderRadius: 16,
-                    borderWidth: settingsTheme.colors.id === schema.id ? 5 : 5,
+                    borderWidth: settingsTheme.colors.id === schema.id ? 5 : 1,
                     borderColor:
                       settingsTheme.colors.id === schema.id
                         ? '#FFF'
@@ -146,14 +146,14 @@ export default function ColorsScreen() {
                     style={{
                       height: squareSize,
                       width: squareSize,
-                      backgroundColor: schema.background,
+                      backgroundColor: schema.surface,
                     }}
                   />
                   <View
                     style={{
                       height: squareSize,
                       width: squareSize,
-                      backgroundColor: schema.surface,
+                      backgroundColor: schema.background,
                       borderTopRightRadius: 8,
                       borderBottomRightRadius: 8,
                     }}
