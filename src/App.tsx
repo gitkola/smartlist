@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -14,6 +14,7 @@ import ModalAddTobuy from './screens/AddTobuyScreen';
 import ModalEditTobuy from './screens/EditTobuyScreen';
 import useSettingsTheme from './store/settingsStore';
 import ColorsScreen from './screens/ColorsScreen';
+import SplashScreen from 'react-native-splash-screen';
 
 type DrawerParamsList = {
   todostack: undefined;
@@ -86,6 +87,12 @@ export default function App(): JSX.Element {
       ...settingsTheme.colors,
     },
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 1500);
+  });
 
   return (
     <GestureHandlerRootView style={{flex: 1}}>
