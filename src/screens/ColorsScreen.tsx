@@ -1,31 +1,39 @@
 import React from 'react';
 import {HStack, VStack} from '@react-native-material/core';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {Appbar, useTheme} from 'react-native-paper';
+import {
+  Checkbox,
+  Divider,
+  Appbar,
+  FAB,
+  useTheme,
+  Text,
+} from 'react-native-paper';
 import {Platform, StatusBar, TouchableOpacity, View} from 'react-native';
 import {DrawerActions, useNavigation} from '@react-navigation/native';
-import useSettingsTheme from '../store/settingsStore';
 import {ScrollView} from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import useSettingsTheme from '../store/settingsStore';
 
 const colorSchemas = [
   {
     id: 0,
-    primary: '#6527BE',
-    secondary: '#9681EB',
-    surface: '#FFFFFF',
-    background: '#DDDDDD',
-  },
-  {
-    id: 1,
     primary: '#6527BE',
     secondary: '#45CFDD',
     surface: '#FFFFFF',
     background: '#DDDDDD',
   },
   {
-    id: 2,
+    id: 1,
     primary: '#45CFDD',
     secondary: '#6527BE',
+    surface: '#FFFFFF',
+    background: '#DDDDDD',
+  },
+  {
+    id: 2,
+    primary: '#6527BE',
+    secondary: '#9681EB',
     surface: '#FFFFFF',
     background: '#DDDDDD',
   },
@@ -99,7 +107,6 @@ export default function ColorsScreen() {
   const {top} = useSafeAreaInsets();
   const theme = useTheme();
   const settingsTheme = useSettingsTheme();
-  const squareSize = 50;
 
   return (
     <VStack fill style={{backgroundColor: theme.colors.background}}>
@@ -117,47 +124,180 @@ export default function ColorsScreen() {
                 }}>
                 <HStack
                   p={settingsTheme.colors.id === schema.id ? 5 : 8}
-                  bg={'#CCC'}
                   style={{
-                    borderRadius: 16,
+                    backgroundColor: '#CCC',
                     borderWidth: settingsTheme.colors.id === schema.id ? 4 : 1,
                     borderColor:
                       settingsTheme.colors.id === schema.id
                         ? theme.colors.secondary
                         : 'rgba(0,0,0,0.1)',
                   }}>
-                  <View
-                    style={{
-                      height: squareSize,
-                      width: squareSize,
-                      backgroundColor: schema.primary,
-                      borderTopLeftRadius: 8,
-                      borderBottomLeftRadius: 8,
-                    }}
-                  />
-                  <View
-                    style={{
-                      height: squareSize,
-                      width: squareSize,
-                      backgroundColor: schema.secondary,
-                    }}
-                  />
-                  <View
-                    style={{
-                      height: squareSize,
-                      width: squareSize,
-                      backgroundColor: schema.surface,
-                    }}
-                  />
-                  <View
-                    style={{
-                      height: squareSize,
-                      width: squareSize,
-                      backgroundColor: schema.background,
-                      borderTopRightRadius: 8,
-                      borderBottomRightRadius: 8,
-                    }}
-                  />
+                  <VStack bg={schema.primary} pt={40}>
+                    <HStack
+                      spacing={8}
+                      items="center"
+                      style={{
+                        marginHorizontal: 8,
+                        paddingLeft: 8,
+                        height: 40,
+                        backgroundColor: schema.primary,
+                        borderRadius: 4,
+                      }}>
+                      <Icon
+                        name="format-list-checks"
+                        size={20}
+                        color={theme.colors.onPrimary}
+                      />
+                      <Text
+                        style={{
+                          color: theme.colors.onPrimary,
+                          fontWeight: '500',
+                        }}>
+                        ToDo
+                      </Text>
+                    </HStack>
+                    <HStack
+                      spacing={8}
+                      items="center"
+                      style={{
+                        marginHorizontal: 8,
+                        paddingLeft: 8,
+                        height: 40,
+                        backgroundColor: schema.secondary,
+                        borderRadius: 4,
+                      }}>
+                      <Icon
+                        name="cart-outline"
+                        size={20}
+                        color={theme.colors.onPrimary}
+                      />
+                      <Text
+                        style={{
+                          color: theme.colors.onPrimary,
+                          fontWeight: '500',
+                          paddingRight: 8,
+                        }}>
+                        ToBuy
+                      </Text>
+                    </HStack>
+                    <HStack
+                      spacing={8}
+                      items="center"
+                      style={{
+                        marginHorizontal: 8,
+                        paddingLeft: 8,
+                        height: 40,
+                        backgroundColor: schema.primary,
+                        borderRadius: 4,
+                      }}>
+                      <Icon
+                        name="format-paint"
+                        size={20}
+                        color={theme.colors.onPrimary}
+                      />
+                      <Text
+                        style={{
+                          color: theme.colors.onPrimary,
+                          fontWeight: '500',
+                        }}>
+                        Colors
+                      </Text>
+                    </HStack>
+                  </VStack>
+                  <VStack>
+                    <HStack
+                      items="center"
+                      spacing={8}
+                      style={{
+                        width: 116,
+                        height: 40,
+                        paddingLeft: 8,
+                        backgroundColor: schema.primary,
+                      }}>
+                      <Icon
+                        name="menu"
+                        size={20}
+                        color={theme.colors.onPrimary}
+                      />
+                      <Text
+                        style={{
+                          color: theme.colors.onPrimary,
+                          fontWeight: '500',
+                          fontSize: 18,
+                        }}>
+                        ToDo
+                      </Text>
+                    </HStack>
+                    <HStack
+                      items="center"
+                      style={{
+                        height: 40,
+                        width: 116,
+                        backgroundColor: schema.surface,
+                      }}>
+                      <Checkbox.Android
+                        status={'unchecked'}
+                        color={schema.secondary}
+                        uncheckedColor={schema.secondary}
+                        style={{
+                          width: 16,
+                          height: 16,
+                        }}
+                      />
+                      <Text
+                        style={{
+                          color: theme.colors.onSurface,
+                          fontWeight: '500',
+                        }}>
+                        Apples
+                      </Text>
+                    </HStack>
+                    <Divider />
+                    <HStack
+                      items="center"
+                      style={{
+                        height: 40,
+                        width: 116,
+                        backgroundColor: schema.surface,
+                      }}>
+                      <Checkbox.Android
+                        status={'checked'}
+                        color={schema.secondary}
+                        uncheckedColor={schema.secondary}
+                        style={{
+                          width: 16,
+                          height: 16,
+                        }}
+                      />
+                      <Text
+                        style={{
+                          color: theme.colors.onSurface,
+                          fontWeight: '500',
+                        }}>
+                        Bananas
+                      </Text>
+                    </HStack>
+                    <View
+                      style={{
+                        width: 116,
+                        height: 80,
+                        backgroundColor: schema.background,
+                      }}>
+                      <FAB
+                        size="small"
+                        mode="elevated"
+                        icon={'plus'}
+                        color={theme.colors.onPrimary}
+                        style={{
+                          position: 'absolute',
+                          right: 8,
+                          bottom: 8,
+                          borderRadius: 60,
+                          backgroundColor: schema.secondary,
+                        }}
+                      />
+                    </View>
+                  </VStack>
                 </HStack>
               </TouchableOpacity>
             </HStack>

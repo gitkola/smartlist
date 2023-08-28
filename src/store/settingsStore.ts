@@ -21,7 +21,7 @@ const useSettingsTheme = create<Store, [['zustand/persist', unknown]]>(
       colors: {
         id: 0,
         primary: '#6527BE',
-        secondary: '#9681EB',
+        secondary: '#45CFDD',
         surface: '#FFFFFF',
         background: '#DDDDDD',
       },
