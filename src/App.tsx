@@ -5,6 +5,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {PaperProvider, MD3LightTheme} from 'react-native-paper';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import Orientation from 'react-native-orientation-locker';
 import DrawerContent from './components/DrawerContent';
 import TodoScreen from './screens/TodoScreen';
 import TobuyScreen from './screens/TobuyScreen';
@@ -89,6 +90,7 @@ export default function App(): JSX.Element {
   };
 
   useEffect(() => {
+    Orientation.lockToPortrait();
     setTimeout(() => {
       SplashScreen.hide();
     }, 1000);
