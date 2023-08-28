@@ -77,6 +77,7 @@ const ScreenEditListItem = ({
           style={{backgroundColor: theme.colors.background}}>
           <HStack items="center">
             <TextInput
+              numberOfLines={1}
               label={'Title'}
               onChangeText={text => setTitle(text)}
               value={title as string}
@@ -113,6 +114,8 @@ const ScreenEditListItem = ({
                 setApplyDate(value);
                 if (!value) {
                   setDate(undefined);
+                } else {
+                  setDate(new Date(Date.now()));
                 }
               }}
             />
@@ -127,6 +130,8 @@ const ScreenEditListItem = ({
                 setApplyTime(value);
                 if (!value) {
                   setTime(undefined);
+                } else {
+                  setTime(new Date(Date.now()));
                 }
               }}
             />

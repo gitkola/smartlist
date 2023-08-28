@@ -69,6 +69,7 @@ const ScreenAddListItem = ({
           style={{backgroundColor: theme.colors.background}}>
           <HStack items="center">
             <TextInput
+              numberOfLines={1}
               label={'Title'}
               onChangeText={text => setNewTitle(text)}
               value={newTitle}
@@ -105,6 +106,8 @@ const ScreenAddListItem = ({
                 setApplyDate(value);
                 if (!value) {
                   setNewDate(undefined);
+                } else {
+                  setNewDate(new Date(Date.now()));
                 }
               }}
             />
@@ -119,6 +122,8 @@ const ScreenAddListItem = ({
                 setApplyTime(value);
                 if (!value) {
                   setNewTime(undefined);
+                } else {
+                  setNewTime(new Date(Date.now()));
                 }
               }}
             />
