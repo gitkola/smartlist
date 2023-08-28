@@ -167,7 +167,7 @@ export default function ListItem({
                       {new Date(listItem.date).toLocaleDateString()}
                     </Text>
                   )}
-                  {'time' in listItem && listItem.date && listItem.time && (
+                  {'time' in listItem && listItem.time && (
                     <Text
                       style={{
                         color: theme.colors.onSurfaceDisabled,
