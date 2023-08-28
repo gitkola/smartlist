@@ -43,7 +43,7 @@ export default function ListItem({
   const theme = useTheme();
   const itemHeight = 60;
 
-  const height = useSharedValue<number>(60);
+  const height = useSharedValue<number>(itemHeight);
   const {width} = Dimensions.get('window');
 
   const swipeable = useRef<Swipeable>(null);
@@ -96,6 +96,8 @@ export default function ListItem({
     <Animated.View
       style={{
         height,
+        overflow: 'hidden',
+        backgroundColor: theme.colors.surface,
       }}>
       {index === 0 && (
         <Divider style={{backgroundColor: theme.colors.outline}} />
@@ -108,7 +110,6 @@ export default function ListItem({
           items="center"
           style={{
             backgroundColor: theme.colors.surface,
-            height: itemHeight,
           }}>
           <View
             style={{
@@ -133,9 +134,13 @@ export default function ListItem({
               height: itemHeight,
               justifyContent: 'center',
             }}>
-            <HStack items="center" justify="between" pr={18}>
-              <View>
+            <HStack items="center" justify="between">
+              <View
+                style={{
+                  width: width - 2 * itemHeight,
+                }}>
                 <Text
+                  numberOfLines={1}
                   style={{
                     fontSize: 18,
                     color: theme.colors.onSurface,
@@ -174,7 +179,15 @@ export default function ListItem({
                   )}
                 </HStack>
               </View>
-              <ColorCircle color={listItem.color} />
+              <View
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: itemHeight,
+                  height: itemHeight,
+                }}>
+                <ColorCircle color={listItem.color} />
+              </View>
             </HStack>
           </TouchableOpacity>
         </HStack>
