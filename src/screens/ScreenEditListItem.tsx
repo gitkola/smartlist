@@ -43,34 +43,8 @@ const ScreenEditListItem = ({
   return (
     <DismissKeyboardWithAvoidingView>
       <View style={{flex: 1}}>
-        <Appbar
-          mode="center-aligned"
-          style={{backgroundColor: theme.colors.primary}}>
-          <Appbar.Content
-            title={'Cancel'}
-            color={theme.colors.onPrimary}
-            onPress={() => navigation.goBack()}
-            style={{
-              left: -80,
-            }}
-          />
-          <Appbar.Content
-            title={'Save'}
-            color={theme.colors.onPrimary}
-            onPress={() => {
-              updateTitle(Number(id), title);
-              updateDescription(Number(id), description);
-              updateDate && updateDate(Number(id), date as Date | undefined);
-              updateTime && updateTime(Number(id), time as Date | undefined);
-              navigation.goBack();
-            }}
-            style={{
-              right: -80,
-            }}
-          />
-        </Appbar>
         <VStack
-          pv={16}
+          pv={80}
           spacing={16}
           ph={16}
           fill
@@ -137,6 +111,39 @@ const ScreenEditListItem = ({
             />
           )}
         </VStack>
+        <Appbar
+          elevated
+          mode="center-aligned"
+          style={{
+            backgroundColor: theme.colors.primary,
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+          }}>
+          <Appbar.Content
+            title={'Cancel'}
+            color={theme.colors.onPrimary}
+            onPress={() => navigation.goBack()}
+            style={{
+              left: -80,
+            }}
+          />
+          <Appbar.Content
+            title={'Save'}
+            color={theme.colors.onPrimary}
+            onPress={() => {
+              updateTitle(Number(id), title);
+              updateDescription(Number(id), description);
+              updateDate && updateDate(Number(id), date as Date | undefined);
+              updateTime && updateTime(Number(id), time as Date | undefined);
+              navigation.goBack();
+            }}
+            style={{
+              right: -80,
+            }}
+          />
+        </Appbar>
       </View>
     </DismissKeyboardWithAvoidingView>
   );

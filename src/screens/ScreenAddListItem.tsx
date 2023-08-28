@@ -38,31 +38,8 @@ const ScreenAddListItem = ({
   return (
     <DismissKeyboardWithAvoidingView>
       <View style={{flex: 1}}>
-        <Appbar
-          mode="center-aligned"
-          style={{backgroundColor: theme.colors.primary}}>
-          <Appbar.Content
-            title={'Cancel'}
-            color={theme.colors.onPrimary}
-            onPress={() => navigation.goBack()}
-            style={{
-              left: -80,
-            }}
-          />
-          <Appbar.Content
-            title={'Add'}
-            color={theme.colors.onPrimary}
-            onPress={() => {
-              addListItem();
-              navigation.goBack();
-            }}
-            style={{
-              right: -80,
-            }}
-          />
-        </Appbar>
         <VStack
-          pv={16}
+          pv={80}
           spacing={16}
           ph={16}
           fill
@@ -129,6 +106,36 @@ const ScreenAddListItem = ({
             />
           )}
         </VStack>
+        <Appbar
+          elevated
+          mode="center-aligned"
+          style={{
+            backgroundColor: theme.colors.primary,
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+          }}>
+          <Appbar.Content
+            title={'Cancel'}
+            color={theme.colors.onPrimary}
+            onPress={() => navigation.goBack()}
+            style={{
+              left: -80,
+            }}
+          />
+          <Appbar.Content
+            title={'Add'}
+            color={theme.colors.onPrimary}
+            onPress={() => {
+              addListItem();
+              navigation.goBack();
+            }}
+            style={{
+              right: -80,
+            }}
+          />
+        </Appbar>
       </View>
     </DismissKeyboardWithAvoidingView>
   );
