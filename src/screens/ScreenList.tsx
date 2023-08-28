@@ -106,7 +106,7 @@ export default function ScreenList({
         elevated
         safeAreaInsets={{top}}
         style={{
-          height: Platform.OS === 'ios' ? 90 : 60,
+          height: Platform.OS === 'ios' ? 110 : 60,
           backgroundColor: theme.colors.primary,
           position: 'absolute',
           top: 0,

@@ -106,7 +106,7 @@ export default function ColorsScreen() {
       <StatusBar barStyle={'light-content'} />
       <ScrollView
         contentContainerStyle={{
-          paddingTop: Platform.OS === 'ios' ? 90 : 60,
+          paddingTop: Platform.OS === 'ios' ? 110 : 60,
         }}>
         <VStack>
           {colorSchemas.map(schema => (
@@ -116,14 +116,14 @@ export default function ColorsScreen() {
                   settingsTheme.setTheme(schema);
                 }}>
                 <HStack
-                  p={8}
+                  p={settingsTheme.colors.id === schema.id ? 5 : 8}
                   bg={'#CCC'}
                   style={{
                     borderRadius: 16,
-                    borderWidth: settingsTheme.colors.id === schema.id ? 5 : 1,
+                    borderWidth: settingsTheme.colors.id === schema.id ? 4 : 1,
                     borderColor:
                       settingsTheme.colors.id === schema.id
-                        ? '#FFF'
+                        ? theme.colors.secondary
                         : 'rgba(0,0,0,0.1)',
                   }}>
                   <View
@@ -168,7 +168,7 @@ export default function ColorsScreen() {
         elevated
         safeAreaInsets={{top}}
         style={{
-          height: Platform.OS === 'ios' ? 90 : 60,
+          height: Platform.OS === 'ios' ? 110 : 60,
           backgroundColor: theme.colors.primary,
           position: 'absolute',
           top: 0,

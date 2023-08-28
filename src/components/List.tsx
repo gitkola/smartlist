@@ -81,7 +81,7 @@ export default function List({
         paddingBottom: 100,
       }}
       containerStyle={{
-        paddingTop: Platform.OS === 'ios' ? 90 : 60,
+        paddingTop: Platform.OS === 'ios' ? 110 : 60,
       }}
     />
   );
