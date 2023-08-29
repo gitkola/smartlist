@@ -129,10 +129,33 @@ export default function ColorsScreen() {
                     borderWidth: settingsTheme.colors.id === schema.id ? 4 : 1,
                     borderColor:
                       settingsTheme.colors.id === schema.id
-                        ? theme.colors.secondary
+                        ? theme.colors.primary
                         : 'rgba(0,0,0,0.1)',
+                    borderTopLeftRadius:
+                      settingsTheme.colors.id === schema.id ? 32 : 32,
+                    borderBottomLeftRadius:
+                      settingsTheme.colors.id === schema.id ? 32 : 32,
+                    borderTopRightRadius:
+                      settingsTheme.colors.id === schema.id ? 32 : 32,
+                    borderBottomRightRadius:
+                      settingsTheme.colors.id === schema.id ? 32 : 32,
+                    shadowColor: '#000',
+                    shadowOffset: {
+                      width: 3,
+                      height: 5,
+                    },
+                    shadowRadius:
+                      settingsTheme.colors.id === schema.id ? 3 : 12,
+                    shadowOpacity:
+                      settingsTheme.colors.id === schema.id ? 0.3 : 0.7,
                   }}>
-                  <VStack bg={schema.primary} pt={40}>
+                  <VStack
+                    bg={schema.primary}
+                    pt={40}
+                    style={{
+                      borderTopLeftRadius: 24,
+                      borderBottomLeftRadius: 24,
+                    }}>
                     <HStack
                       spacing={8}
                       items="center"
@@ -213,6 +236,7 @@ export default function ColorsScreen() {
                         height: 40,
                         paddingLeft: 8,
                         backgroundColor: schema.primary,
+                        borderTopRightRadius: 24,
                       }}>
                       <Icon
                         name="menu"
@@ -282,6 +306,7 @@ export default function ColorsScreen() {
                         width: 116,
                         height: 80,
                         backgroundColor: schema.background,
+                        borderBottomRightRadius: 24,
                       }}>
                       <FAB
                         size="small"
