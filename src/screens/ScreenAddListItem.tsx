@@ -43,7 +43,7 @@ const ScreenAddListItem = ({
           spacing={16}
           ph={16}
           fill
-          style={{backgroundColor: theme.colors.background}}>
+          style={{backgroundColor: theme.colors.surface}}>
           <HStack items="center">
             <TextInput
               numberOfLines={1}
@@ -54,7 +54,7 @@ const ScreenAddListItem = ({
               style={{
                 flex: 1,
                 fontSize: 18,
-                backgroundColor: theme.colors.background,
+                backgroundColor: theme.colors.surface,
               }}
               autoFocus
             />
@@ -68,7 +68,7 @@ const ScreenAddListItem = ({
               style={{
                 flex: 1,
                 fontSize: 18,
-                backgroundColor: theme.colors.background,
+                backgroundColor: theme.colors.surface,
               }}
               multiline
             />
