@@ -249,7 +249,7 @@ export default function ColorsScreen() {
                           fontWeight: '500',
                           fontSize: 18,
                         }}>
-                        ToDo
+                        ToBuy
                       </Text>
                     </HStack>
                     <HStack
