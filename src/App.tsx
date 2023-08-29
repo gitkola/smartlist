@@ -53,12 +53,20 @@ const TodoStackNavigator = () => (
     <TodoStack.Screen
       name="addTodo"
       component={ModalAddTodo}
-      options={{presentation: 'modal', orientation: 'portrait'}}
+      options={{
+        presentation: 'modal',
+        orientation: 'portrait',
+        animation: 'slide_from_bottom',
+      }}
     />
     <TodoStack.Screen
       name="editTodo"
       component={ModalEditTodo}
-      options={{presentation: 'modal', orientation: 'portrait'}}
+      options={{
+        presentation: 'modal',
+        orientation: 'portrait',
+        animation: 'slide_from_bottom',
+      }}
     />
   </TodoStack.Navigator>
 );
@@ -69,12 +77,20 @@ const TobuyStackNavigator = () => (
     <TobuyStack.Screen
       name="addTobuy"
       component={ModalAddTobuy}
-      options={{presentation: 'modal', orientation: 'portrait'}}
+      options={{
+        presentation: 'modal',
+        orientation: 'portrait',
+        animation: 'slide_from_bottom',
+      }}
     />
     <TobuyStack.Screen
       name="editTobuy"
       component={ModalEditTobuy}
-      options={{presentation: 'modal', orientation: 'portrait'}}
+      options={{
+        presentation: 'modal',
+        orientation: 'portrait',
+        animation: 'slide_from_bottom',
+      }}
     />
   </TobuyStack.Navigator>
 );
