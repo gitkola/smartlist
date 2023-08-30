@@ -132,7 +132,11 @@ export default function ScreenList({
             />
           }
           anchorPosition="bottom"
-          contentStyle={{left: 2, bottom: 10}}>
+          contentStyle={{
+            left: 2,
+            bottom: 10,
+            backgroundColor: theme.colors.surface,
+          }}>
           {colors.map((color: string) => (
             <ColorCircleContainer
               children={

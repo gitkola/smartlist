@@ -56,7 +56,7 @@ export default function ListItem({
 
   const leftButtons = () => (
     <>
-      {colors.map((color: string) => (
+      {colors.map((color: string, idx: number) => (
         <ColorCircleContainer
           children={
             <ColorCircle
@@ -70,6 +70,8 @@ export default function ListItem({
           w={35}
           h={60}
           key={color}
+          ml={idx === 0 ? 6 : 0}
+          mr={idx === colors.length - 1 ? 6 : 0}
         />
       ))}
     </>

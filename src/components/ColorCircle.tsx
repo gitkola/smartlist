@@ -18,19 +18,13 @@ export default function ColorCircle({
           width: 24,
           height: 24,
           borderRadius: 24,
-          backgroundColor: 'white',
+          backgroundColor: color === 'transparent' ? 'white' : color,
           borderWidth: 2,
-          borderColor: theme.colors.onBackground,
-        }}>
-        <View
-          style={{
-            width: 20,
-            height: 20,
-            borderRadius: 20,
-            backgroundColor: color,
-          }}
-        />
-      </View>
+          borderColor: theme.colors.secondary,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      />
     </TouchableOpacity>
   );
 }
