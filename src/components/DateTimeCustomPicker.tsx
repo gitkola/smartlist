@@ -59,6 +59,10 @@ export default function DateTimeCustomPicker({
           {str}
         </Text>
         <Switch
+          trackColor={{
+            false: theme.colors.secondary,
+            true: theme.colors.secondary,
+          }}
           value={apply}
           onValueChange={data => {
             onApplyChange(data);
@@ -92,6 +96,10 @@ export default function DateTimeCustomPicker({
         disabled={!apply}
       />
       <Switch
+        trackColor={{
+          false: theme.colors.secondary,
+          true: theme.colors.secondary,
+        }}
         value={apply}
         onValueChange={data => {
           onApplyChange(data);
