@@ -25,7 +25,10 @@ export default function DateTimeCustomPicker({
   const str = value
     ? mode === 'date'
       ? new Date(value).toLocaleDateString()
-      : new Date(value).toLocaleTimeString()
+      : new Date(value).toLocaleTimeString([], {
+          hour: '2-digit',
+          minute: '2-digit',
+        })
     : 'Pick ' + mode;
 
   if (Platform.OS === 'android') {

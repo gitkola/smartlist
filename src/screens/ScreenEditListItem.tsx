@@ -9,11 +9,18 @@ import type {Tobuy} from '../store/tobuyStore';
 import DateTimeCustomPicker from '../components/DateTimeCustomPicker';
 
 type ScreenEditListItemProps = {
-  updateTitle: (id: number, title: string) => void;
-  updateDescription: (id: number, description: string) => void;
+  updateTitle?: (id: number, title: string) => void;
+  updateDescription?: (id: number, description: string) => void;
   updateDate?: (id: number, date: Date | undefined) => void;
   updateTime?: (id: number, time: Date | undefined) => void;
-  list: Todo[] | Tobuy[];
+  listItem: Todo | Tobuy;
+  updateItem?: (
+    id: string,
+    title: string,
+    description: string,
+    date: Date | undefined,
+    time: Date | undefined,
+  ) => void;
 };
 
 const ScreenEditListItem = ({
@@ -21,16 +28,15 @@ const ScreenEditListItem = ({
   updateDescription,
   updateDate,
   updateTime,
-  list,
+  updateItem,
 }: ScreenEditListItemProps) => {
   const navigation = useNavigation();
   const theme = useTheme();
 
-  const {id} = useRoute().params as {id: number};
-
-  const listItem = list.filter(
-    item => item.id.toString() === id?.toString(),
-  )[0];
+  const {id, listItem} = useRoute().params as {
+    id: number | string;
+    listItem: Todo | Tobuy;
+  };
 
   const [title, setTitle] = useState(listItem.title);
   const [description, setDescription] = useState(listItem.description);
@@ -133,10 +139,20 @@ const ScreenEditListItem = ({
             title={'Save'}
             color={theme.colors.onPrimary}
             onPress={() => {
-              updateTitle(Number(id), title);
-              updateDescription(Number(id), description);
-              updateDate && updateDate(Number(id), date as Date | undefined);
-              updateTime && updateTime(Number(id), time as Date | undefined);
+              if (updateItem) {
+                updateItem(
+                  String(id),
+                  title,
+                  description,
+                  date as Date | undefined,
+                  time as Date | undefined,
+                );
+              } else {
+                updateTitle!(Number(id), title);
+                updateDescription!(Number(id), description);
+                updateDate && updateDate(Number(id), date as Date | undefined);
+                updateTime && updateTime(Number(id), time as Date | undefined);
+              }
               navigation.goBack();
             }}
             style={{

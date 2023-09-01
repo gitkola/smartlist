@@ -3,19 +3,15 @@ import {create} from 'zustand';
 import {createJSONStorage, persist} from 'zustand/middleware';
 
 export interface Todo {
-  id: number;
+  id: number | string;
   title: string;
   description: string;
-  date: Date | undefined;
-  time: Date | undefined;
+  date?: Date;
+  time?: Date;
   done: boolean;
   color: string;
+  index?: number;
 }
-
-// export interface Time extends Date {
-//   // hours: number;
-//   // minutes: number;
-// }
 
 const updateTodoTitle = (todos: Todo[], id: number, title: string): Todo[] =>
   todos.map(todo => ({
@@ -77,7 +73,7 @@ const addTodo = (
 ): Todo[] => [
   ...todos,
   {
-    id: Math.max(0, Math.max(...todos.map(({id}) => id))) + 1,
+    id: Date.now(),
     title,
     description,
     date,

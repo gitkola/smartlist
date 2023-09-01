@@ -35,15 +35,18 @@ const generateShareMessage = (headerTitle: string, list: Item[]) =>
     .map(item => {
       if ('date' in item) {
         return (
-          (item.done ? '\u2611' : '\u2610') +
+          (item?.done ? '\u2611' : '\u2610') +
           ' ' +
-          item.title +
-          (item.description ? '\n' + item.description : '') +
-          (item?.date
-            ? '\n' +
-              new Date(item?.date as unknown as string).toLocaleDateString()
+          item?.title +
+          (item?.description ? '\n' + item.description : '') +
+          (item?.date ? '\n' + new Date(item.date).toLocaleDateString() : '') +
+          (item?.time
+            ? (item?.date ? ' ' : '\n') +
+              new Date(item.time).toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit',
+              })
             : '') +
-          (item.time ? ' ' + item.time?.toLocaleTimeString() : '') +
           '\n'
         );
       } else {

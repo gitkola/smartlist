@@ -50,7 +50,7 @@ export default function ListItem({
 
   const deleteItem = () => {
     height.value = withTiming(0, {duration: 500}, () => {
-      runOnJS(remove)(listItem.id);
+      runOnJS(remove)(listItem.id as number);
     });
   };
 
@@ -61,7 +61,7 @@ export default function ListItem({
           children={
             <ColorCircle
               onPress={() => {
-                updateColor(listItem.id, color);
+                updateColor(listItem.id as number, color);
                 swipeable?.current?.close();
               }}
               color={color}
@@ -122,14 +122,19 @@ export default function ListItem({
             }}>
             <Checkbox.Android
               status={listItem.done ? 'checked' : 'unchecked'}
-              onPress={() => toggle(listItem.id)}
+              onPress={() => toggle(listItem.id as number)}
               color={theme.colors.secondary}
               uncheckedColor={theme.colors.secondary}
             />
           </View>
           <TouchableOpacity
             onPress={() =>
-              navigation.navigate(editListItemRoute, {id: listItem.id})
+              // @ts-ignore
+              navigation.navigate(editListItemRoute, {
+                id: listItem.id,
+                list,
+                listItem,
+              })
             }
             style={{
               width: width - itemHeight,
@@ -175,8 +180,10 @@ export default function ListItem({
                         color: theme.colors.onSurfaceDisabled,
                         fontSize: 12,
                       }}>
-                      {typeof listItem.time?.toLocaleTimeString ===
-                        'function' && listItem.time?.toLocaleTimeString()}
+                      {new Date(listItem.time).toLocaleTimeString([], {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      })}
                     </Text>
                   )}
                 </HStack>

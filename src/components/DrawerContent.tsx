@@ -14,6 +14,9 @@ const renderIconList = ({color, size}: {color: string; size: number}) => (
 const renderIconCart = ({color, size}: {color: string; size: number}) => (
   <Icon name="cart-outline" size={size} color={color} />
 );
+const renderIconCloudToDo = ({color, size}: {color: string; size: number}) => (
+  <Icon name="cloud-print-outline" size={size} color={color} />
+);
 const renderIconSettings = ({color, size}: {color: string; size: number}) => (
   <Icon name="format-paint" size={size} color={color} />
 );
@@ -43,6 +46,15 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
         label={'ToBuy'}
         onPress={() => navigation.navigate('tobuystack' as never)}
         focused={props.state.routeNames[props.state.index] === 'tobuystack'}
+      />
+      <DrawerItem
+        icon={renderIconCloudToDo}
+        activeTintColor={theme.colors.onPrimary}
+        activeBackgroundColor={theme.colors.secondary}
+        inactiveTintColor={theme.colors.onPrimary}
+        label={'CloudToDo'}
+        onPress={() => navigation.navigate('cloudtodostack' as never)}
+        focused={props.state.routeNames[props.state.index] === 'cloudtodostack'}
       />
       <DrawerItem
         icon={renderIconSettings}
