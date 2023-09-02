@@ -108,7 +108,7 @@ export default function ScreenList({
         <ActivityIndicator
           animating={true}
           size={'large'}
-          style={{marginTop: 126}}
+          style={{marginTop: Platform.OS === 'ios' ? 126 : 76}}
           color={theme.colors.secondary}
         />
       )}
