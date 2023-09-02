@@ -1,7 +1,13 @@
 import React from 'react';
 import {VStack} from '@react-native-material/core';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {Appbar, FAB, useTheme, Menu} from 'react-native-paper';
+import {
+  Appbar,
+  FAB,
+  useTheme,
+  Menu,
+  ActivityIndicator,
+} from 'react-native-paper';
 import {Platform, StatusBar} from 'react-native';
 import type {Todo} from '../store/todoStore';
 import type {Tobuy} from '../store/tobuyStore';
@@ -28,6 +34,7 @@ type ScreenListProps = {
   toggle: (id: number) => void;
   updateColor: (id: number, color: string) => void;
   setList: (list: Item[]) => void;
+  isLoading?: boolean;
 };
 
 const generateShareMessage = (headerTitle: string, list: Item[]) =>
@@ -78,6 +85,7 @@ export default function ScreenList({
   toggle,
   updateColor,
   setList,
+  isLoading,
 }: ScreenListProps) {
   const navigation = useNavigation();
   const {top} = useSafeAreaInsets();
@@ -96,6 +104,14 @@ export default function ScreenList({
 
   return (
     <VStack fill style={{backgroundColor: theme.colors.background}}>
+      {isLoading && (
+        <ActivityIndicator
+          animating={true}
+          size={'large'}
+          style={{marginTop: 126}}
+          color={theme.colors.secondary}
+        />
+      )}
       <List
         list={colorAndDoneFiltered}
         editListItemRoute={editListItemRoute}

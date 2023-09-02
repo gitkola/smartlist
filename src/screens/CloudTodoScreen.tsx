@@ -15,12 +15,15 @@ export default function CloudTodoScreen() {
   const {user} = useAuthentication();
 
   const [value, setValue] = useState<ToDoList>();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     const dataRef = ref(db, 'lists/' + user?.uid);
     onValue(dataRef, snapshot => {
       const data = snapshot.val();
       setValue(data);
+      setIsLoading(false);
     });
   }, [user?.uid]);
 
@@ -82,6 +85,7 @@ export default function CloudTodoScreen() {
       toggle={toggle}
       updateColor={updateColor}
       setList={setList}
+      isLoading={isLoading}
     />
   );
 }
