@@ -159,7 +159,8 @@ export default function ListItem({
                     numberOfLines={1}
                     style={{
                       fontSize: 16,
-                      color: theme.colors.onSurfaceDisabled,
+                      opacity: 0.5,
+                      color: theme.colors.onSurface,
                     }}>
                     {listItem.description}
                   </Text>
@@ -168,7 +169,8 @@ export default function ListItem({
                   {'date' in listItem && listItem.date && (
                     <Text
                       style={{
-                        color: theme.colors.onSurfaceDisabled,
+                        color: theme.colors.onSurface,
+                        opacity: 0.5,
                         fontSize: 12,
                       }}>
                       {new Date(listItem.date).toLocaleDateString()}
@@ -177,7 +179,8 @@ export default function ListItem({
                   {'time' in listItem && listItem.time && (
                     <Text
                       style={{
-                        color: theme.colors.onSurfaceDisabled,
+                        color: theme.colors.onSurface,
+                        opacity: 0.5,
                         fontSize: 12,
                       }}>
                       {new Date(listItem.time).toLocaleTimeString([], {

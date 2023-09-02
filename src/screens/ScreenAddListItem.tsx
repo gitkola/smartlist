@@ -46,6 +46,7 @@ const ScreenAddListItem = ({
           style={{backgroundColor: theme.colors.surface}}>
           <HStack items="center">
             <TextInput
+              activeOutlineColor={theme.colors.secondary}
               numberOfLines={1}
               label={'Title'}
               onChangeText={text => setNewTitle(text)}
@@ -61,6 +62,7 @@ const ScreenAddListItem = ({
           </HStack>
           <HStack items="center">
             <TextInput
+              activeOutlineColor={theme.colors.secondary}
               label={'Description'}
               onChangeText={text => setNewDescription(text)}
               value={newDescription}

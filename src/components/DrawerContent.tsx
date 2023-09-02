@@ -40,7 +40,7 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
       }}>
       <DrawerItem
         icon={renderIconList}
-        activeTintColor={theme.colors.onPrimary}
+        activeTintColor={theme.colors.onSecondary}
         activeBackgroundColor={theme.colors.secondary}
         inactiveTintColor={theme.colors.onPrimary}
         label={'ToDo'}
@@ -49,7 +49,7 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
       />
       <DrawerItem
         icon={renderIconCart}
-        activeTintColor={theme.colors.onPrimary}
+        activeTintColor={theme.colors.onSecondary}
         activeBackgroundColor={theme.colors.secondary}
         inactiveTintColor={theme.colors.onPrimary}
         label={'ToBuy'}
@@ -58,7 +58,7 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
       />
       <DrawerItem
         icon={renderIconCloudToDo}
-        activeTintColor={theme.colors.onPrimary}
+        activeTintColor={theme.colors.onSecondary}
         activeBackgroundColor={theme.colors.secondary}
         inactiveTintColor={theme.colors.onPrimary}
         label={'Cloud ToDo'}
@@ -67,7 +67,7 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
       />
       <DrawerItem
         icon={renderIconSettings}
-        activeTintColor={theme.colors.onPrimary}
+        activeTintColor={theme.colors.onSecondary}
         activeBackgroundColor={theme.colors.secondary}
         inactiveTintColor={theme.colors.onPrimary}
         label={'Theme'}
@@ -94,7 +94,7 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
             style={{width: 120}}
             icon={'logout'}
             buttonColor={theme.colors.secondary}
-            textColor={theme.colors.onPrimary}
+            textColor={theme.colors.onSecondary}
             onPress={() => signOut(auth)}>
             LOGOUT
           </Button>

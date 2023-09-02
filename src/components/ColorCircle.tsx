@@ -18,7 +18,8 @@ export default function ColorCircle({
           width: 24,
           height: 24,
           borderRadius: 24,
-          backgroundColor: color === 'transparent' ? 'white' : color,
+          backgroundColor:
+            color === 'transparent' ? theme.colors.surface : color,
           borderWidth: 2,
           borderColor: theme.colors.secondary,
           alignItems: 'center',

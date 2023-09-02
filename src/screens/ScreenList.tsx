@@ -82,7 +82,7 @@ export default function ScreenList({
         mode="elevated"
         icon={'plus'}
         customSize={64}
-        color={theme.colors.onPrimary}
+        color={theme.colors.onSecondary}
         onPress={() => navigation.navigate(addToListRoute as never)}
         style={{
           position: 'absolute',

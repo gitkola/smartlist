@@ -22,83 +22,142 @@ const colorSchemas = [
     secondary: '#45CFDD',
     surface: '#FFFFFF',
     background: '#DDDDDD',
+    onPrimary: '#FFFFFF',
+    onSecondary: '#000000',
+    onSurface: '#000000',
+    onBackground: '#000000',
   },
   {
     id: 1,
+    primary: '#6527BE',
+    secondary: '#45CFDD',
+    surface: '#121212',
+    background: '#121212',
+    onPrimary: '#FFFFFF',
+    onSecondary: '#000000',
+    onSurface: '#FFFFFF',
+    onBackground: '#FFFFFF',
+  },
+  {
+    id: 2,
     primary: '#45CFDD',
     secondary: '#6527BE',
     surface: '#FFFFFF',
     background: '#DDDDDD',
+    onPrimary: '#000000',
+    onSecondary: '#FFFFFF',
+    onSurface: '#000000',
+    onBackground: '#000000',
   },
   {
-    id: 2,
+    id: 3,
     primary: '#6527BE',
     secondary: '#9681EB',
     surface: '#FFFFFF',
     background: '#DDDDDD',
+    onPrimary: '#FFFFFF',
+    onSecondary: '#000000',
+    onSurface: '#000000',
+    onBackground: '#000000',
   },
   {
-    id: 3,
+    id: 4,
     primary: '#793FDF',
     secondary: '#7091F5',
     surface: '#FFFFFF',
     background: '#DDDDDD',
+    onPrimary: '#FFFFFF',
+    onSecondary: '#000000',
+    onSurface: '#000000',
+    onBackground: '#000000',
   },
   {
-    id: 4,
+    id: 5,
     primary: '#313866',
     secondary: '#504099',
     surface: '#FFFFFF',
     background: '#DDDDDD',
+    onPrimary: '#FFFFFF',
+    onSecondary: '#FFFFFF',
+    onSurface: '#000000',
+    onBackground: '#000000',
   },
   {
-    id: 5,
+    id: 6,
     primary: '#191D88',
     secondary: '#1450A3',
     surface: '#FFFFFF',
     background: '#DDDDDD',
+    onPrimary: '#FFFFFF',
+    onSecondary: '#FFFFFF',
+    onSurface: '#000000',
+    onBackground: '#000000',
   },
   {
-    id: 6,
+    id: 7,
     primary: '#FF9B9B',
     secondary: '#FFD6A5',
     surface: '#FFFFFF',
     background: '#DDDDDD',
+    onPrimary: '#000000',
+    onSecondary: '#000000',
+    onSurface: '#000000',
+    onBackground: '#000000',
   },
   {
-    id: 7,
+    id: 8,
     primary: '#0C356A',
     secondary: '#279EFF',
     surface: '#FFFFFF',
     background: '#DDDDDD',
+    onPrimary: '#FFFFFF',
+    onSecondary: '#000000',
+    onSurface: '#000000',
+    onBackground: '#000000',
   },
   {
-    id: 8,
+    id: 9,
     primary: '#DFD7BF',
     secondary: '#3F2305',
     surface: '#FFFFFF',
     background: '#DDDDDD',
+    onPrimary: '#000000',
+    onSecondary: '#FFFFFF',
+    onSurface: '#000000',
+    onBackground: '#000000',
   },
   {
-    id: 9,
+    id: 10,
     primary: '#A4D0A4',
     secondary: '#A4907C',
     surface: '#FFFFFF',
     background: '#DDDDDD',
+    onPrimary: '#000000',
+    onSecondary: '#000000',
+    onSurface: '#000000',
+    onBackground: '#000000',
   },
   {
-    id: 10,
+    id: 11,
     primary: '#A4907C',
     secondary: '#617A55',
     surface: '#FFFFFF',
     background: '#DDDDDD',
+    onPrimary: '#000000',
+    onSecondary: '#FFFFFF',
+    onSurface: '#000000',
+    onBackground: '#000000',
   },
   {
-    id: 11,
+    id: 12,
     primary: '#A4D0A4',
     secondary: '#617A55',
     surface: '#FFFFFF',
     background: '#DDDDDD',
+    onPrimary: '#000000',
+    onSecondary: '#FFFFFF',
+    onSurface: '#000000',
+    onBackground: '#000000',
   },
 ];
 
@@ -129,7 +188,7 @@ export default function ColorsScreen() {
                     borderWidth: settingsTheme.colors.id === schema.id ? 4 : 1,
                     borderColor:
                       settingsTheme.colors.id === schema.id
-                        ? theme.colors.primary
+                        ? schema.primary
                         : 'rgba(0,0,0,0.1)',
                     borderTopLeftRadius:
                       settingsTheme.colors.id === schema.id ? 32 : 32,
@@ -141,13 +200,11 @@ export default function ColorsScreen() {
                       settingsTheme.colors.id === schema.id ? 32 : 32,
                     shadowColor: '#000',
                     shadowOffset: {
-                      width: 3,
-                      height: 5,
+                      width: 1,
+                      height: 3,
                     },
-                    shadowRadius:
-                      settingsTheme.colors.id === schema.id ? 3 : 12,
-                    shadowOpacity:
-                      settingsTheme.colors.id === schema.id ? 0.3 : 0.7,
+                    shadowRadius: settingsTheme.colors.id === schema.id ? 3 : 6,
+                    shadowOpacity: 0.7,
                     elevation: settingsTheme.colors.id === schema.id ? 8 : 16,
                   }}>
                   <VStack
@@ -170,11 +227,11 @@ export default function ColorsScreen() {
                       <Icon
                         name="format-list-checks"
                         size={20}
-                        color={theme.colors.onPrimary}
+                        color={schema.onPrimary}
                       />
                       <Text
                         style={{
-                          color: theme.colors.onPrimary,
+                          color: schema.onPrimary,
                           fontWeight: '500',
                         }}>
                         ToDo
@@ -193,11 +250,11 @@ export default function ColorsScreen() {
                       <Icon
                         name="cart-outline"
                         size={20}
-                        color={theme.colors.onPrimary}
+                        color={schema.onSecondary}
                       />
                       <Text
                         style={{
-                          color: theme.colors.onPrimary,
+                          color: schema.onSecondary,
                           fontWeight: '500',
                           paddingRight: 8,
                         }}>
@@ -217,11 +274,11 @@ export default function ColorsScreen() {
                       <Icon
                         name="format-paint"
                         size={20}
-                        color={theme.colors.onPrimary}
+                        color={schema.onPrimary}
                       />
                       <Text
                         style={{
-                          color: theme.colors.onPrimary,
+                          color: schema.onPrimary,
                           fontWeight: '500',
                         }}>
                         Theme
@@ -239,14 +296,10 @@ export default function ColorsScreen() {
                         backgroundColor: schema.primary,
                         borderTopRightRadius: 24,
                       }}>
-                      <Icon
-                        name="menu"
-                        size={20}
-                        color={theme.colors.onPrimary}
-                      />
+                      <Icon name="menu" size={20} color={schema.onPrimary} />
                       <Text
                         style={{
-                          color: theme.colors.onPrimary,
+                          color: schema.onPrimary,
                           fontWeight: '500',
                           fontSize: 18,
                         }}>
@@ -271,7 +324,7 @@ export default function ColorsScreen() {
                       />
                       <Text
                         style={{
-                          color: theme.colors.onSurface,
+                          color: schema.onSurface,
                           fontWeight: '500',
                         }}>
                         Apples
@@ -296,12 +349,13 @@ export default function ColorsScreen() {
                       />
                       <Text
                         style={{
-                          color: theme.colors.onSurface,
+                          color: schema.onSurface,
                           fontWeight: '500',
                         }}>
                         Bananas
                       </Text>
                     </HStack>
+                    <Divider />
                     <View
                       style={{
                         width: 116,
@@ -313,7 +367,7 @@ export default function ColorsScreen() {
                         size="small"
                         mode="elevated"
                         icon={'plus'}
-                        color={theme.colors.onPrimary}
+                        color={schema.onSecondary}
                         style={{
                           position: 'absolute',
                           right: 8,

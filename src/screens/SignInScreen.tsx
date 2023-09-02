@@ -26,8 +26,8 @@ const SignInScreen = () => {
   const navigation = useNavigation();
   const theme = useTheme();
   const [value, setValue] = useState({
-    email: 'lavrovmykola@gmail.com',
-    password: 'password',
+    email: '',
+    password: '',
     error: '',
     signInInProgress: false,
     signUpInProgress: false,
@@ -129,6 +129,7 @@ const SignInScreen = () => {
             mode="outlined"
             placeholder="Email"
             value={value.email}
+            activeOutlineColor={theme.colors.secondary}
             onChangeText={(text: string) =>
               setValue({...value, email: text, error: ''})
             }
@@ -141,6 +142,7 @@ const SignInScreen = () => {
                 mode="outlined"
                 placeholder="Password"
                 value={value.password}
+                activeOutlineColor={theme.colors.secondary}
                 onChangeText={(text: string) =>
                   setValue({...value, password: text, error: ''})
                 }
@@ -159,6 +161,8 @@ const SignInScreen = () => {
           {!value.isForgotPassword ? (
             <>
               <Button
+                buttonColor={theme.colors.secondary}
+                textColor={theme.colors.onSecondary}
                 mode="contained"
                 onPress={signIn}
                 disabled={value.signInInProgress}
@@ -170,6 +174,7 @@ const SignInScreen = () => {
                 or
               </Text>
               <Button
+                textColor={theme.colors.secondary}
                 mode="outlined"
                 onPress={signUp}
                 disabled={value.signUpInProgress}
@@ -178,6 +183,7 @@ const SignInScreen = () => {
               </Button>
               <View style={{height: 16}} />
               <Button
+                textColor={theme.colors.secondary}
                 onPress={() => {
                   setValue({
                     ...value,
@@ -191,6 +197,8 @@ const SignInScreen = () => {
           ) : (
             <>
               <Button
+                buttonColor={theme.colors.secondary}
+                textColor={theme.colors.onSecondary}
                 mode="contained"
                 onPress={resetPassword}
                 disabled={value.sendPasswordResetEmailInProgress}
@@ -199,6 +207,7 @@ const SignInScreen = () => {
               </Button>
               <View style={{height: 16}} />
               <Button
+                textColor={theme.colors.secondary}
                 onPress={() => {
                   setValue({
                     ...value,
