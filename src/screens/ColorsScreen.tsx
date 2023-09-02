@@ -148,6 +148,7 @@ export default function ColorsScreen() {
                       settingsTheme.colors.id === schema.id ? 3 : 12,
                     shadowOpacity:
                       settingsTheme.colors.id === schema.id ? 0.3 : 0.7,
+                    elevation: settingsTheme.colors.id === schema.id ? 8 : 16,
                   }}>
                   <VStack
                     bg={schema.primary}
