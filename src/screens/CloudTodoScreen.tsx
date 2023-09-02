@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import ScreenList from './ScreenList';
-import useAuthStore from '../store/authStore';
 import {ref, set, onValue} from 'firebase/database';
 import {db} from '../config/firebase';
 import {Todo} from '../store/todoStore';
+import {useAuthentication} from '../hooks/useAuthentication';
 
 type ToDoList = {
   doneHidden: boolean;
@@ -12,8 +12,10 @@ type ToDoList = {
 };
 
 export default function CloudTodoScreen() {
-  const {user} = useAuthStore();
+  const {user} = useAuthentication();
+
   const [value, setValue] = useState<ToDoList>();
+
   useEffect(() => {
     const dataRef = ref(db, 'lists/' + user?.uid);
     onValue(dataRef, snapshot => {
@@ -65,7 +67,7 @@ export default function CloudTodoScreen() {
       colorFilter={value?.colorFilter || 'transparent'}
       setDoneHidden={setDoneHidden}
       setColorFilter={setColorFilter}
-      headerTitle="CloudToDo"
+      headerTitle="Cloud ToDo"
       list={
         value?.todos
           ? Object.keys(value.todos || {})

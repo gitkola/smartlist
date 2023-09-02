@@ -5,8 +5,12 @@ import {
   DrawerItem,
   DrawerContentComponentProps,
 } from '@react-navigation/drawer';
-import {useTheme} from 'react-native-paper';
+import {Button, Text, useTheme} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {VStack} from '@react-native-material/core';
+import {signOut} from 'firebase/auth';
+import {useAuthentication} from '../hooks/useAuthentication';
+import {auth} from '../config/firebase';
 
 const renderIconList = ({color, size}: {color: string; size: number}) => (
   <Icon name="format-list-checks" size={size} color={color} />
@@ -22,13 +26,18 @@ const renderIconSettings = ({color, size}: {color: string; size: number}) => (
 );
 
 export default function DrawerContent(props: DrawerContentComponentProps) {
+  const {user} = useAuthentication();
   const theme = useTheme();
   const navigation = useNavigation();
 
   return (
     <DrawerContentScrollView
       {...props}
-      style={{backgroundColor: theme.colors.primary}}>
+      scrollEnabled={false}
+      style={{backgroundColor: theme.colors.primary}}
+      contentContainerStyle={{
+        flex: 1,
+      }}>
       <DrawerItem
         icon={renderIconList}
         activeTintColor={theme.colors.onPrimary}
@@ -52,7 +61,7 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
         activeTintColor={theme.colors.onPrimary}
         activeBackgroundColor={theme.colors.secondary}
         inactiveTintColor={theme.colors.onPrimary}
-        label={'CloudToDo'}
+        label={'Cloud ToDo'}
         onPress={() => navigation.navigate('cloudtodostack' as never)}
         focused={props.state.routeNames[props.state.index] === 'cloudtodostack'}
       />
@@ -61,10 +70,36 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
         activeTintColor={theme.colors.onPrimary}
         activeBackgroundColor={theme.colors.secondary}
         inactiveTintColor={theme.colors.onPrimary}
-        label={'Colors'}
+        label={'Theme'}
         onPress={() => navigation.navigate('colors' as never)}
         focused={props.state.routeNames[props.state.index] === 'colors'}
       />
+      {user && (
+        <VStack
+          ph={16}
+          pv={32}
+          spacing={16}
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+          }}>
+          <Text style={{color: theme.colors.onPrimary}}>
+            You are logged in as{' '}
+            <Text style={{color: theme.colors.onPrimary, fontWeight: '600'}}>
+              {user?.email}
+            </Text>
+          </Text>
+          <Button
+            style={{width: 120}}
+            icon={'logout'}
+            buttonColor={theme.colors.secondary}
+            textColor={theme.colors.onPrimary}
+            onPress={() => signOut(auth)}>
+            LOGOUT
+          </Button>
+        </VStack>
+      )}
     </DrawerContentScrollView>
   );
 }

@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import {ref, push, set} from 'firebase/database';
 import {db} from '../config/firebase';
 import ScreenAddListItem from '../screens/ScreenAddListItem';
-import useAuthStore from '../store/authStore';
+import {useAuthentication} from '../hooks/useAuthentication';
 
 const ModalAddCloudTodo = () => {
-  const {user} = useAuthStore();
+  const {user} = useAuthentication();
   const [newTodoTitle, setNewTodoTitle] = useState<string>();
   const [newTodoDescription, setNewTodoDescription] = useState<string>();
   const [newTodoDate, setNewTodoDate] = useState<Date>();

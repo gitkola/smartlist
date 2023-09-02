@@ -41,64 +41,64 @@ const colorSchemas = [
     id: 3,
     primary: '#793FDF',
     secondary: '#7091F5',
-    surface: '#FFFD8C',
-    background: '#97FFF4',
+    surface: '#FFFFFF',
+    background: '#DDDDDD',
   },
   {
     id: 4,
     primary: '#313866',
     secondary: '#504099',
-    surface: '#FE7BE5',
-    background: '#974EC3',
+    surface: '#FFFFFF',
+    background: '#DDDDDD',
   },
   {
     id: 5,
     primary: '#191D88',
     secondary: '#1450A3',
-    surface: '#FFC436',
-    background: '#337CCF',
+    surface: '#FFFFFF',
+    background: '#DDDDDD',
   },
   {
     id: 6,
     primary: '#FF9B9B',
     secondary: '#FFD6A5',
-    surface: '#CBFFA9',
-    background: '#FFFEC4',
+    surface: '#FFFFFF',
+    background: '#DDDDDD',
   },
   {
     id: 7,
     primary: '#0C356A',
     secondary: '#279EFF',
-    surface: '#D5FFD0',
-    background: '#40F8FF',
+    surface: '#FFFFFF',
+    background: '#DDDDDD',
   },
   {
     id: 8,
     primary: '#DFD7BF',
     secondary: '#3F2305',
-    surface: '#F2EAD3',
-    background: '#F5F5F5',
+    surface: '#FFFFFF',
+    background: '#DDDDDD',
   },
   {
     id: 9,
     primary: '#A4D0A4',
     secondary: '#A4907C',
-    surface: '#D0F5BE',
-    background: '#98EECC',
+    surface: '#FFFFFF',
+    background: '#DDDDDD',
   },
   {
     id: 10,
     primary: '#A4907C',
     secondary: '#617A55',
-    surface: '#F7E1AE',
-    background: '#FFF8D6',
+    surface: '#FFFFFF',
+    background: '#DDDDDD',
   },
   {
     id: 11,
     primary: '#A4D0A4',
     secondary: '#617A55',
-    surface: '#F7E1AE',
-    background: '#FFF8D6',
+    surface: '#FFFFFF',
+    background: '#DDDDDD',
   },
 ];
 
@@ -223,7 +223,7 @@ export default function ColorsScreen() {
                           color: theme.colors.onPrimary,
                           fontWeight: '500',
                         }}>
-                        Colors
+                        Theme
                       </Text>
                     </HStack>
                   </VStack>
@@ -345,7 +345,7 @@ export default function ColorsScreen() {
           iconColor={theme.colors.onPrimary}
           onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
         />
-        <Appbar.Content title={'Colors'} color={theme.colors.onPrimary} />
+        <Appbar.Content title={'Theme'} color={theme.colors.onPrimary} />
       </Appbar>
     </VStack>
   );

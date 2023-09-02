@@ -1,20 +1,61 @@
-import React from 'react';
-import {StyleSheet, Text, View, Button} from 'react-native';
-import {TextInput} from 'react-native-paper';
-import {getAuth, signInWithEmailAndPassword} from 'firebase/auth';
-import {useNavigation} from '@react-navigation/native';
+import React, {useState} from 'react';
+import {Platform, View} from 'react-native';
+import {
+  TextInput,
+  Text,
+  Button,
+  useTheme,
+  Appbar,
+  Snackbar,
+} from 'react-native-paper';
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from 'firebase/auth';
+import {VStack} from '@react-native-material/core';
+import DismissKeyboardWithAvoidingView from '../hocs/DismissKeyboardWithAvoidingView';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useNavigation, DrawerActions} from '@react-navigation/native';
 
 const auth = getAuth();
 
 const SignInScreen = () => {
+  const {top} = useSafeAreaInsets();
   const navigation = useNavigation();
-  const [value, setValue] = React.useState({
-    email: '',
-    password: '',
+  const theme = useTheme();
+  const [value, setValue] = useState({
+    email: 'lavrovmykola@gmail.com',
+    password: 'password',
     error: '',
+    signInInProgress: false,
+    signUpInProgress: false,
+    sendPasswordResetEmailInProgress: false,
+    snackbarVisible: false,
+    isForgotPassword: false,
   });
 
   async function signIn() {
+    if (value.email === '' || value.password === '') {
+      setValue({...value, error: 'Email and password are mandatory.'});
+      return;
+    }
+
+    try {
+      setValue({...value, signInInProgress: true});
+      await signInWithEmailAndPassword(auth, value.email, value.password);
+      setValue({...value, signInInProgress: false});
+    } catch (error: any) {
+      setValue({
+        ...value,
+        error: error?.message,
+        signInInProgress: false,
+      });
+    }
+  }
+
+  async function signUp() {
     if (value.email === '' || value.password === '') {
       setValue({
         ...value,
@@ -24,68 +65,186 @@ const SignInScreen = () => {
     }
 
     try {
-      await signInWithEmailAndPassword(auth, value.email, value.password);
+      setValue({...value, signUpInProgress: true});
+      await createUserWithEmailAndPassword(auth, value.email, value.password);
+      setValue({...value, signUpInProgress: false});
     } catch (error: any) {
       setValue({
         ...value,
         error: error?.message,
+        signUpInProgress: false,
+      });
+    }
+  }
+
+  async function resetPassword() {
+    if (value.email === '') {
+      setValue({
+        ...value,
+        error: 'Email is mandatory.',
+      });
+      return;
+    }
+
+    try {
+      setValue({...value, sendPasswordResetEmailInProgress: true});
+      await sendPasswordResetEmail(auth, value.email);
+      setValue({
+        ...value,
+        sendPasswordResetEmailInProgress: false,
+        snackbarVisible: true,
+        isForgotPassword: false,
+      });
+    } catch (error: any) {
+      setValue({
+        ...value,
+        error: error?.message,
+        sendPasswordResetEmailInProgress: false,
       });
     }
   }
 
   return (
-    <View style={styles.container}>
-      <Text>Signin screen!</Text>
-
-      {!!value.error && (
-        <View style={styles.error}>
-          <Text>{value.error}</Text>
-        </View>
-      )}
-
-      <View style={styles.controls}>
-        <TextInput
-          placeholder="Email"
-          value={value.email}
-          onChangeText={(text: string) => setValue({...value, email: text})}
-        />
-
-        <TextInput
-          placeholder="Password"
-          value={value.password}
-          onChangeText={(text: string) => setValue({...value, password: text})}
-          secureTextEntry={true}
-        />
-
-        <Button title="Sign in" onPress={signIn} />
-        <Button
-          title="To Sign up"
-          onPress={() => {
-            navigation.navigate('signUp' as never);
-          }}
-        />
-      </View>
-    </View>
+    <DismissKeyboardWithAvoidingView>
+      <VStack
+        fill
+        spacing={16}
+        ph={32}
+        pv={Platform.OS === 'ios' ? 140 : 90}
+        style={{backgroundColor: theme.colors.background}}>
+        <VStack>
+          <Text
+            style={{
+              alignSelf: 'center',
+              fontSize: 16,
+              fontWeight: '600',
+            }}>
+            {!value.isForgotPassword
+              ? 'Sign in to use Cloud ToDo List'
+              : 'Reset password'}
+          </Text>
+          <View style={{height: 16}} />
+          <TextInput
+            label={'Email'}
+            mode="outlined"
+            placeholder="Email"
+            value={value.email}
+            onChangeText={(text: string) =>
+              setValue({...value, email: text, error: ''})
+            }
+          />
+          {!value.isForgotPassword && (
+            <>
+              <View style={{height: 16}} />
+              <TextInput
+                label={'Password'}
+                mode="outlined"
+                placeholder="Password"
+                value={value.password}
+                onChangeText={(text: string) =>
+                  setValue({...value, password: text, error: ''})
+                }
+                secureTextEntry={true}
+              />
+            </>
+          )}
+          <Text
+            style={{
+              fontSize: 16,
+              color: theme.colors.error,
+              paddingVertical: 16,
+            }}>
+            {value.error ? value.error : ' '}
+          </Text>
+          {!value.isForgotPassword ? (
+            <>
+              <Button
+                mode="contained"
+                onPress={signIn}
+                disabled={value.signInInProgress}
+                loading={value.signInInProgress}>
+                SIGN IN
+              </Button>
+              <Text
+                style={{alignSelf: 'center', fontSize: 16, paddingVertical: 8}}>
+                or
+              </Text>
+              <Button
+                mode="outlined"
+                onPress={signUp}
+                disabled={value.signUpInProgress}
+                loading={value.signUpInProgress}>
+                SIGN UP
+              </Button>
+              <View style={{height: 16}} />
+              <Button
+                onPress={() => {
+                  setValue({
+                    ...value,
+                    error: '',
+                    isForgotPassword: true,
+                  });
+                }}>
+                FORGOT PASSWORD
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button
+                mode="contained"
+                onPress={resetPassword}
+                disabled={value.sendPasswordResetEmailInProgress}
+                loading={value.sendPasswordResetEmailInProgress}>
+                SEND PASSWORD RESET EMAIL
+              </Button>
+              <View style={{height: 16}} />
+              <Button
+                onPress={() => {
+                  setValue({
+                    ...value,
+                    error: '',
+                    isForgotPassword: false,
+                  });
+                }}>
+                BACK TO SIGN IN
+              </Button>
+            </>
+          )}
+        </VStack>
+        <Appbar
+          elevated
+          safeAreaInsets={{top}}
+          style={{
+            height: Platform.OS === 'ios' ? 110 : 60,
+            backgroundColor: theme.colors.primary,
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+          }}>
+          <Appbar.Action
+            icon={'menu'}
+            iconColor={theme.colors.onPrimary}
+            onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+          />
+          <Appbar.Content title={'Cloud ToDo'} color={theme.colors.onPrimary} />
+        </Appbar>
+        <Snackbar
+          visible={value.snackbarVisible}
+          onDismiss={() =>
+            setValue(pevValue => ({
+              ...pevValue,
+              snackbarVisible: false,
+            }))
+          }
+          action={{
+            label: 'close',
+          }}>
+          Please check your email.
+        </Snackbar>
+      </VStack>
+    </DismissKeyboardWithAvoidingView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 20,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  controls: {
-    flex: 1,
-  },
-  error: {
-    marginTop: 10,
-    padding: 10,
-    color: '#fff',
-    backgroundColor: '#D54826FF',
-  },
-});
 
 export default SignInScreen;

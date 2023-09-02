@@ -4,11 +4,11 @@ import {Todo} from '../store/todoStore';
 import {useRoute} from '@react-navigation/native';
 import {ref, set} from 'firebase/database';
 import {db} from '../config/firebase';
-import useAuthStore from '../store/authStore';
+import {useAuthentication} from '../hooks/useAuthentication';
 
 const ModalEditCloudTodo = () => {
   const {listItem} = useRoute().params as {listItem: Todo};
-  const {user} = useAuthStore();
+  const {user} = useAuthentication();
 
   const updateItem = (
     id: string,
