@@ -13,7 +13,6 @@ type ScreenEditListItemProps = {
   updateDescription?: (id: number, description: string) => void;
   updateDate?: (id: number, date: Date | undefined) => void;
   updateTime?: (id: number, time: Date | undefined) => void;
-  listItem: Todo | Tobuy;
   updateItem?: (
     id: string,
     title: string,

@@ -3,7 +3,7 @@ import ScreenEditListItem from '../screens/ScreenEditListItem';
 import useTodoStore from '../store/todoStore';
 
 const ModalEditTodo = () => {
-  const {updateTitle, updateDescription, updateDate, updateTime, todos} =
+  const {updateTitle, updateDescription, updateDate, updateTime} =
     useTodoStore();
 
   return (
@@ -12,7 +12,6 @@ const ModalEditTodo = () => {
       updateDescription={updateDescription}
       updateDate={updateDate}
       updateTime={updateTime}
-      list={todos}
     />
   );
 };
