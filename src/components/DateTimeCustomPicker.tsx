@@ -81,7 +81,8 @@ export default function DateTimeCustomPicker({
         {mode === 'date' ? 'Date:' : 'Time:'}
       </Text>
       <DateTimePicker
-        themeVariant={theme.colors.surface === '#FFFFFF' ? 'light' : 'dark'}
+        //@ts-ignore
+        themeVariant={theme.colors.datePickerThemeVaiant}
         value={new Date((value as Date) || Date.now())}
         mode={mode}
         is24Hour={true}
