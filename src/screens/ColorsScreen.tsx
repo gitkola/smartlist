@@ -40,27 +40,20 @@ export default function ColorsScreen() {
                 <HStack
                   p={settingsTheme.colors.id === schema.id ? 5 : 8}
                   style={{
-                    backgroundColor: '#CCC',
+                    backgroundColor: '#CCCCCC',
                     borderWidth: settingsTheme.colors.id === schema.id ? 4 : 1,
                     borderColor:
                       settingsTheme.colors.id === schema.id
                         ? schema.primary
                         : 'rgba(0,0,0,0.1)',
-                    borderTopLeftRadius:
-                      settingsTheme.colors.id === schema.id ? 32 : 32,
-                    borderBottomLeftRadius:
-                      settingsTheme.colors.id === schema.id ? 32 : 32,
-                    borderTopRightRadius:
-                      settingsTheme.colors.id === schema.id ? 32 : 32,
-                    borderBottomRightRadius:
-                      settingsTheme.colors.id === schema.id ? 32 : 32,
-                    shadowColor: '#000',
+                    borderRadius: 32,
+                    shadowColor: '#000000',
                     shadowOffset: {
                       width: 1,
                       height: 3,
                     },
-                    shadowRadius: settingsTheme.colors.id === schema.id ? 3 : 6,
-                    shadowOpacity: 0.7,
+                    shadowRadius: settingsTheme.colors.id === schema.id ? 1 : 8,
+                    shadowOpacity: 0.5,
                     elevation: settingsTheme.colors.id === schema.id ? 8 : 16,
                   }}>
                   <VStack
