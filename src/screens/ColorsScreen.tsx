@@ -26,6 +26,7 @@ const colorSchemas = [
     onSecondary: '#000000',
     onSurface: '#000000',
     onBackground: '#000000',
+    statusBarStyle: 'light-content',
   },
   {
     id: 1,
@@ -37,6 +38,7 @@ const colorSchemas = [
     onSecondary: '#000000',
     onSurface: '#FFFFFF',
     onBackground: '#FFFFFF',
+    statusBarStyle: 'light-content',
   },
   {
     id: 2,
@@ -48,6 +50,7 @@ const colorSchemas = [
     onSecondary: '#FFFFFF',
     onSurface: '#000000',
     onBackground: '#000000',
+    statusBarStyle: 'dark-content',
   },
   {
     id: 3,
@@ -59,6 +62,7 @@ const colorSchemas = [
     onSecondary: '#FFFFFF',
     onSurface: '#FFFFFF',
     onBackground: '#FFFFFF',
+    statusBarStyle: 'dark-content',
   },
   {
     id: 4,
@@ -70,6 +74,7 @@ const colorSchemas = [
     onSecondary: '#000000',
     onSurface: '#000000',
     onBackground: '#000000',
+    statusBarStyle: 'light-content',
   },
   {
     id: 5,
@@ -81,6 +86,7 @@ const colorSchemas = [
     onSecondary: '#000000',
     onSurface: '#FFFFFF',
     onBackground: '#FFFFFF',
+    statusBarStyle: 'light-content',
   },
   {
     id: 6,
@@ -92,6 +98,7 @@ const colorSchemas = [
     onSecondary: '#000000',
     onSurface: '#000000',
     onBackground: '#000000',
+    statusBarStyle: 'light-content',
   },
   {
     id: 7,
@@ -103,6 +110,7 @@ const colorSchemas = [
     onSecondary: '#000000',
     onSurface: '#FFFFFF',
     onBackground: '#FFFFFF',
+    statusBarStyle: 'light-content',
   },
   {
     id: 8,
@@ -114,6 +122,7 @@ const colorSchemas = [
     onSecondary: '#FFFFFF',
     onSurface: '#000000',
     onBackground: '#000000',
+    statusBarStyle: 'light-content',
   },
   {
     id: 9,
@@ -125,6 +134,7 @@ const colorSchemas = [
     onSecondary: '#FFFFFF',
     onSurface: '#FFFFFF',
     onBackground: '#FFFFFF',
+    statusBarStyle: 'light-content',
   },
   {
     id: 10,
@@ -136,6 +146,7 @@ const colorSchemas = [
     onSecondary: '#FFFFFF',
     onSurface: '#000000',
     onBackground: '#000000',
+    statusBarStyle: 'light-content',
   },
   {
     id: 11,
@@ -147,6 +158,7 @@ const colorSchemas = [
     onSecondary: '#FFFFFF',
     onSurface: '#FFFFFF',
     onBackground: '#FFFFFF',
+    statusBarStyle: 'light-content',
   },
   {
     id: 12,
@@ -158,6 +170,7 @@ const colorSchemas = [
     onSecondary: '#000000',
     onSurface: '#000000',
     onBackground: '#000000',
+    statusBarStyle: 'light-content',
   },
   {
     id: 13,
@@ -169,6 +182,7 @@ const colorSchemas = [
     onSecondary: '#000000',
     onSurface: '#FFFFFF',
     onBackground: '#FFFFFF',
+    statusBarStyle: 'light-content',
   },
   {
     id: 14,
@@ -180,6 +194,7 @@ const colorSchemas = [
     onSecondary: '#000000',
     onSurface: '#000000',
     onBackground: '#000000',
+    statusBarStyle: 'dark-content',
   },
   {
     id: 15,
@@ -191,6 +206,7 @@ const colorSchemas = [
     onSecondary: '#000000',
     onSurface: '#FFFFFF',
     onBackground: '#FFFFFF',
+    statusBarStyle: 'dark-content',
   },
   {
     id: 16,
@@ -202,6 +218,7 @@ const colorSchemas = [
     onSecondary: '#FFFFFF',
     onSurface: '#000000',
     onBackground: '#000000',
+    statusBarStyle: 'dark-content',
   },
   {
     id: 17,
@@ -213,6 +230,7 @@ const colorSchemas = [
     onSecondary: '#FFFFFF',
     onSurface: '#FFFFFF',
     onBackground: '#FFFFFF',
+    statusBarStyle: 'dark-content',
   },
   {
     id: 18,
@@ -224,6 +242,7 @@ const colorSchemas = [
     onSecondary: '#000000',
     onSurface: '#000000',
     onBackground: '#000000',
+    statusBarStyle: 'dark-content',
   },
   {
     id: 19,
@@ -235,6 +254,7 @@ const colorSchemas = [
     onSecondary: '#000000',
     onSurface: '#FFFFFF',
     onBackground: '#FFFFFF',
+    statusBarStyle: 'dark-content',
   },
   {
     id: 20,
@@ -246,6 +266,7 @@ const colorSchemas = [
     onSecondary: '#FFFFFF',
     onSurface: '#000000',
     onBackground: '#000000',
+    statusBarStyle: 'dark-content',
   },
   {
     id: 21,
@@ -257,6 +278,7 @@ const colorSchemas = [
     onSecondary: '#FFFFFF',
     onSurface: '#FFFFFF',
     onBackground: '#FFFFFF',
+    statusBarStyle: 'dark-content',
   },
   {
     id: 22,
@@ -268,6 +290,7 @@ const colorSchemas = [
     onSecondary: '#FFFFFF',
     onSurface: '#000000',
     onBackground: '#000000',
+    statusBarStyle: 'dark-content',
   },
   {
     id: 23,
@@ -279,6 +302,7 @@ const colorSchemas = [
     onSecondary: '#FFFFFF',
     onSurface: '#FFFFFF',
     onBackground: '#FFFFFF',
+    statusBarStyle: 'dark-content',
   },
 ];
 
@@ -290,7 +314,8 @@ export default function ColorsScreen() {
 
   return (
     <VStack fill style={{backgroundColor: theme.colors.background}}>
-      <StatusBar barStyle={'light-content'} />
+      {/* @ts-ignore */}
+      <StatusBar barStyle={theme.colors.statusBarStyle} />
       <ScrollView
         contentContainerStyle={{
           paddingTop: Platform.OS === 'ios' ? 110 : 60,

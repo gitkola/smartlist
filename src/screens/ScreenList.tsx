@@ -68,7 +68,8 @@ export default function ScreenList({
         updateColor={updateColor}
         setList={setList}
       />
-      <StatusBar barStyle={'light-content'} />
+      {/* @ts-ignore */}
+      <StatusBar barStyle={theme.colors.statusBarStyle} />
       <HeaderScreenList
         headerTitle={headerTitle}
         listLength={list.length}
