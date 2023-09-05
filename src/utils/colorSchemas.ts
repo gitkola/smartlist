@@ -168,8 +168,8 @@ const colorSchemas = [
     datePickerThemeVaiant: 'dark',
   },
   {
-    primary: '#FF9B9B',
-    secondary: '#FFD6A5',
+    primary: '#EF9595',
+    secondary: '#FFBB5C',
     surface: '#FFFFFF',
     background: '#DDDDDD',
     onPrimary: '#000000',
@@ -180,8 +180,8 @@ const colorSchemas = [
     datePickerThemeVaiant: 'light',
   },
   {
-    primary: '#FF9B9B',
-    secondary: '#FFD6A5',
+    primary: '#EF9595',
+    secondary: '#FFBB5C',
     surface: '#212121',
     background: '#121212',
     onPrimary: '#000000',
