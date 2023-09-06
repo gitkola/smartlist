@@ -110,8 +110,8 @@ const SignInScreen = () => {
         fill
         spacing={16}
         ph={32}
-        pv={60 + top}
-        style={{backgroundColor: theme.colors.background}}>
+        pv={65 + top}
+        style={{backgroundColor: theme.colors.surface}}>
         <VStack>
           <Text
             style={{
@@ -133,6 +133,7 @@ const SignInScreen = () => {
             onChangeText={(text: string) =>
               setValue({...value, email: text, error: ''})
             }
+            style={{backgroundColor: theme.colors.surface}}
           />
           {!value.isForgotPassword && (
             <>
@@ -147,6 +148,7 @@ const SignInScreen = () => {
                   setValue({...value, password: text, error: ''})
                 }
                 secureTextEntry={true}
+                style={{backgroundColor: theme.colors.surface}}
               />
             </>
           )}
