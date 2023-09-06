@@ -84,7 +84,9 @@ export default function List({
       }}
       containerStyle={{
         paddingTop: 45 + top,
+        flex: 1,
       }}
+      showsVerticalScrollIndicator={false}
     />
   );
 }
