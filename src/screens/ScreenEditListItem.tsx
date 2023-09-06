@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View} from 'react-native';
+import {View, StatusBar} from 'react-native';
 import {HStack, VStack} from '@react-native-material/core';
 import {Appbar, TextInput, useTheme} from 'react-native-paper';
 import {useNavigation, useRoute} from '@react-navigation/native';
@@ -48,6 +48,7 @@ const ScreenEditListItem = ({
   return (
     <DismissKeyboardWithAvoidingView>
       <View style={{flex: 1}}>
+        <StatusBar barStyle={'light-content'} />
         <VStack
           pv={80}
           spacing={16}
