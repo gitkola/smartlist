@@ -9,7 +9,8 @@ import DraggableFlatList, {
   OpacityDecorator,
   RenderItemParams,
 } from 'react-native-draggable-flatlist';
-import {Platform, TouchableOpacity} from 'react-native';
+import {TouchableOpacity} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 type ListProps = {
   list: Todo[] | Tobuy[];
@@ -29,6 +30,7 @@ export default function List({
   setList,
 }: ListProps) {
   const theme = useTheme();
+  const {top} = useSafeAreaInsets();
 
   const renderDivider = () => (
     <Divider style={{backgroundColor: theme.colors.outline}} />
@@ -81,7 +83,7 @@ export default function List({
         paddingBottom: 100,
       }}
       containerStyle={{
-        paddingTop: Platform.OS === 'ios' ? 110 : 60,
+        paddingTop: 45 + top,
       }}
     />
   );

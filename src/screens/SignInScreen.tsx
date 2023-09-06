@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Platform, View} from 'react-native';
+import {View} from 'react-native';
 import {
   TextInput,
   Text,
@@ -110,7 +110,7 @@ const SignInScreen = () => {
         fill
         spacing={16}
         ph={32}
-        pv={Platform.OS === 'ios' ? 140 : 90}
+        pv={60 + top}
         style={{backgroundColor: theme.colors.background}}>
         <VStack>
           <Text
@@ -224,7 +224,7 @@ const SignInScreen = () => {
           elevated
           safeAreaInsets={{top}}
           style={{
-            height: Platform.OS === 'ios' ? 110 : 60,
+            height: 45 + top,
             backgroundColor: theme.colors.primary,
             position: 'absolute',
             top: 0,

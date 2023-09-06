@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {DrawerActions, useNavigation} from '@react-navigation/native';
 import {Appbar, Menu, useTheme} from 'react-native-paper';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {Platform, Share, TouchableHighlight} from 'react-native';
+import {Share, TouchableHighlight} from 'react-native';
 import colors from '../utils/colors';
 import ColorCircleContainer from './ColorCircleContainer';
 import ColorCircle from './ColorCircle';
@@ -40,7 +40,7 @@ const Header = ({
       elevated
       safeAreaInsets={{top}}
       style={{
-        height: Platform.OS === 'ios' ? 110 : 60,
+        height: 45 + top,
         backgroundColor: theme.colors.primary,
         position: 'absolute',
         top: 0,

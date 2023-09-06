@@ -237,7 +237,7 @@ export default function ColorsScreen() {
         elevated
         safeAreaInsets={{top}}
         style={{
-          height: Platform.OS === 'ios' ? 110 : 60,
+          height: 45 + top,
           backgroundColor: theme.colors.primary,
           position: 'absolute',
           top: 0,
