@@ -1,4 +1,27 @@
-const colorSchemas = [
+export enum StatusBarStyle {
+  LIGHT = 'light-content',
+  DARK = 'dark-content',
+}
+
+export enum DatePickerThemeVaiant {
+  LIGHT = 'light',
+  DARK = 'dark',
+}
+
+export type ThemeColors = {
+  id: number;
+  primary: string;
+  secondary: string;
+  background: string;
+  surface: string;
+  onPrimary: string;
+  onSecondary: string;
+  onSurface: string;
+  onBackground: string;
+  statusBarStyle: StatusBarStyle;
+  datePickerThemeVaiant: DatePickerThemeVaiant;
+};
+const colorSchemas: ThemeColors[] = [
   {
     primary: '#6527BE',
     secondary: '#45CFDD',
@@ -8,8 +31,8 @@ const colorSchemas = [
     onSecondary: '#000000',
     onSurface: '#000000',
     onBackground: '#000000',
-    statusBarStyle: 'light-content',
-    datePickerThemeVaiant: 'light',
+    statusBarStyle: StatusBarStyle.LIGHT,
+    datePickerThemeVaiant: DatePickerThemeVaiant.LIGHT,
   },
   {
     primary: '#6527BE',
@@ -20,8 +43,8 @@ const colorSchemas = [
     onSecondary: '#000000',
     onSurface: '#FFFFFF',
     onBackground: '#FFFFFF',
-    statusBarStyle: 'light-content',
-    datePickerThemeVaiant: 'dark',
+    statusBarStyle: StatusBarStyle.LIGHT,
+    datePickerThemeVaiant: DatePickerThemeVaiant.DARK,
   },
   {
     primary: '#6527BE',
@@ -32,8 +55,8 @@ const colorSchemas = [
     onSecondary: '#000000',
     onSurface: '#000000',
     onBackground: '#000000',
-    statusBarStyle: 'light-content',
-    datePickerThemeVaiant: 'light',
+    statusBarStyle: StatusBarStyle.LIGHT,
+    datePickerThemeVaiant: DatePickerThemeVaiant.LIGHT,
   },
   {
     primary: '#6527BE',
@@ -44,8 +67,8 @@ const colorSchemas = [
     onSecondary: '#000000',
     onSurface: '#FFFFFF',
     onBackground: '#FFFFFF',
-    statusBarStyle: 'light-content',
-    datePickerThemeVaiant: 'dark',
+    statusBarStyle: StatusBarStyle.LIGHT,
+    datePickerThemeVaiant: DatePickerThemeVaiant.DARK,
   },
   {
     primary: '#793FDF',
@@ -56,8 +79,8 @@ const colorSchemas = [
     onSecondary: '#000000',
     onSurface: '#000000',
     onBackground: '#000000',
-    statusBarStyle: 'light-content',
-    datePickerThemeVaiant: 'light',
+    statusBarStyle: StatusBarStyle.LIGHT,
+    datePickerThemeVaiant: DatePickerThemeVaiant.LIGHT,
   },
   {
     primary: '#793FDF',
@@ -68,8 +91,8 @@ const colorSchemas = [
     onSecondary: '#000000',
     onSurface: '#FFFFFF',
     onBackground: '#FFFFFF',
-    statusBarStyle: 'light-content',
-    datePickerThemeVaiant: 'dark',
+    statusBarStyle: StatusBarStyle.LIGHT,
+    datePickerThemeVaiant: DatePickerThemeVaiant.DARK,
   },
   {
     primary: '#313866',
@@ -80,8 +103,8 @@ const colorSchemas = [
     onSecondary: '#FFFFFF',
     onSurface: '#000000',
     onBackground: '#000000',
-    statusBarStyle: 'light-content',
-    datePickerThemeVaiant: 'light',
+    statusBarStyle: StatusBarStyle.LIGHT,
+    datePickerThemeVaiant: DatePickerThemeVaiant.LIGHT,
   },
   {
     primary: '#313866',
@@ -92,8 +115,8 @@ const colorSchemas = [
     onSecondary: '#FFFFFF',
     onSurface: '#FFFFFF',
     onBackground: '#FFFFFF',
-    statusBarStyle: 'light-content',
-    datePickerThemeVaiant: 'dark',
+    statusBarStyle: StatusBarStyle.LIGHT,
+    datePickerThemeVaiant: DatePickerThemeVaiant.DARK,
   },
   {
     primary: '#191D88',
@@ -104,8 +127,8 @@ const colorSchemas = [
     onSecondary: '#FFFFFF',
     onSurface: '#000000',
     onBackground: '#000000',
-    statusBarStyle: 'light-content',
-    datePickerThemeVaiant: 'light',
+    statusBarStyle: StatusBarStyle.LIGHT,
+    datePickerThemeVaiant: DatePickerThemeVaiant.LIGHT,
   },
   {
     primary: '#191D88',
@@ -116,8 +139,8 @@ const colorSchemas = [
     onSecondary: '#FFFFFF',
     onSurface: '#FFFFFF',
     onBackground: '#FFFFFF',
-    statusBarStyle: 'light-content',
-    datePickerThemeVaiant: 'dark',
+    statusBarStyle: StatusBarStyle.LIGHT,
+    datePickerThemeVaiant: DatePickerThemeVaiant.DARK,
   },
   {
     primary: '#0C356A',
@@ -128,8 +151,8 @@ const colorSchemas = [
     onSecondary: '#000000',
     onSurface: '#000000',
     onBackground: '#000000',
-    statusBarStyle: 'light-content',
-    datePickerThemeVaiant: 'light',
+    statusBarStyle: StatusBarStyle.LIGHT,
+    datePickerThemeVaiant: DatePickerThemeVaiant.LIGHT,
   },
   {
     primary: '#0C356A',
@@ -140,8 +163,8 @@ const colorSchemas = [
     onSecondary: '#000000',
     onSurface: '#FFFFFF',
     onBackground: '#FFFFFF',
-    statusBarStyle: 'light-content',
-    datePickerThemeVaiant: 'dark',
+    statusBarStyle: StatusBarStyle.LIGHT,
+    datePickerThemeVaiant: DatePickerThemeVaiant.DARK,
   },
   {
     primary: '#45CFDD',
@@ -152,8 +175,8 @@ const colorSchemas = [
     onSecondary: '#FFFFFF',
     onSurface: '#000000',
     onBackground: '#000000',
-    statusBarStyle: 'dark-content',
-    datePickerThemeVaiant: 'light',
+    statusBarStyle: StatusBarStyle.DARK,
+    datePickerThemeVaiant: DatePickerThemeVaiant.LIGHT,
   },
   {
     primary: '#45CFDD',
@@ -164,8 +187,8 @@ const colorSchemas = [
     onSecondary: '#FFFFFF',
     onSurface: '#FFFFFF',
     onBackground: '#FFFFFF',
-    statusBarStyle: 'dark-content',
-    datePickerThemeVaiant: 'dark',
+    statusBarStyle: StatusBarStyle.DARK,
+    datePickerThemeVaiant: DatePickerThemeVaiant.DARK,
   },
   {
     primary: '#EF9595',
@@ -176,8 +199,8 @@ const colorSchemas = [
     onSecondary: '#000000',
     onSurface: '#000000',
     onBackground: '#000000',
-    statusBarStyle: 'dark-content',
-    datePickerThemeVaiant: 'light',
+    statusBarStyle: StatusBarStyle.DARK,
+    datePickerThemeVaiant: DatePickerThemeVaiant.LIGHT,
   },
   {
     primary: '#EF9595',
@@ -188,8 +211,8 @@ const colorSchemas = [
     onSecondary: '#000000',
     onSurface: '#FFFFFF',
     onBackground: '#FFFFFF',
-    statusBarStyle: 'dark-content',
-    datePickerThemeVaiant: 'dark',
+    statusBarStyle: StatusBarStyle.DARK,
+    datePickerThemeVaiant: DatePickerThemeVaiant.DARK,
   },
   {
     primary: '#DFD7BF',
@@ -200,8 +223,8 @@ const colorSchemas = [
     onSecondary: '#FFFFFF',
     onSurface: '#000000',
     onBackground: '#000000',
-    statusBarStyle: 'dark-content',
-    datePickerThemeVaiant: 'light',
+    statusBarStyle: StatusBarStyle.DARK,
+    datePickerThemeVaiant: DatePickerThemeVaiant.LIGHT,
   },
   {
     primary: '#DFD7BF',
@@ -212,8 +235,8 @@ const colorSchemas = [
     onSecondary: '#FFFFFF',
     onSurface: '#FFFFFF',
     onBackground: '#FFFFFF',
-    statusBarStyle: 'dark-content',
-    datePickerThemeVaiant: 'dark',
+    statusBarStyle: StatusBarStyle.DARK,
+    datePickerThemeVaiant: DatePickerThemeVaiant.DARK,
   },
   {
     primary: '#A4D0A4',
@@ -224,8 +247,8 @@ const colorSchemas = [
     onSecondary: '#000000',
     onSurface: '#000000',
     onBackground: '#000000',
-    statusBarStyle: 'dark-content',
-    datePickerThemeVaiant: 'light',
+    statusBarStyle: StatusBarStyle.DARK,
+    datePickerThemeVaiant: DatePickerThemeVaiant.LIGHT,
   },
   {
     primary: '#A4D0A4',
@@ -236,8 +259,8 @@ const colorSchemas = [
     onSecondary: '#000000',
     onSurface: '#FFFFFF',
     onBackground: '#FFFFFF',
-    statusBarStyle: 'dark-content',
-    datePickerThemeVaiant: 'dark',
+    statusBarStyle: StatusBarStyle.DARK,
+    datePickerThemeVaiant: DatePickerThemeVaiant.DARK,
   },
   {
     primary: '#A4D0A4',
@@ -248,8 +271,8 @@ const colorSchemas = [
     onSecondary: '#FFFFFF',
     onSurface: '#000000',
     onBackground: '#000000',
-    statusBarStyle: 'dark-content',
-    datePickerThemeVaiant: 'light',
+    statusBarStyle: StatusBarStyle.DARK,
+    datePickerThemeVaiant: DatePickerThemeVaiant.LIGHT,
   },
   {
     primary: '#A4D0A4',
@@ -260,8 +283,8 @@ const colorSchemas = [
     onSecondary: '#FFFFFF',
     onSurface: '#FFFFFF',
     onBackground: '#FFFFFF',
-    statusBarStyle: 'dark-content',
-    datePickerThemeVaiant: 'dark',
+    statusBarStyle: StatusBarStyle.DARK,
+    datePickerThemeVaiant: DatePickerThemeVaiant.DARK,
   },
   {
     primary: '#A4907C',
@@ -272,8 +295,8 @@ const colorSchemas = [
     onSecondary: '#FFFFFF',
     onSurface: '#000000',
     onBackground: '#000000',
-    statusBarStyle: 'dark-content',
-    datePickerThemeVaiant: 'light',
+    statusBarStyle: StatusBarStyle.DARK,
+    datePickerThemeVaiant: DatePickerThemeVaiant.LIGHT,
   },
   {
     primary: '#A4907C',
@@ -284,8 +307,8 @@ const colorSchemas = [
     onSecondary: '#FFFFFF',
     onSurface: '#FFFFFF',
     onBackground: '#FFFFFF',
-    statusBarStyle: 'dark-content',
-    datePickerThemeVaiant: 'dark',
+    statusBarStyle: StatusBarStyle.DARK,
+    datePickerThemeVaiant: DatePickerThemeVaiant.DARK,
   },
 ].map((schema, index) => ({
   ...schema,

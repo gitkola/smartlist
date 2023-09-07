@@ -1,14 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {create} from 'zustand';
 import {createJSONStorage, persist} from 'zustand/middleware';
-
-type ThemeColors = {
-  id: number;
-  primary: string;
-  secondary: string;
-  background: string;
-  surface: string;
-};
+import colorSchemas, {ThemeColors} from '../utils/colorSchemas';
 
 type Store = {
   colors: ThemeColors;
@@ -19,11 +12,7 @@ const useSettingsTheme = create<Store, [['zustand/persist', unknown]]>(
   persist(
     set => ({
       colors: {
-        id: 0,
-        primary: '#6527BE',
-        secondary: '#45CFDD',
-        surface: '#FFFFFF',
-        background: '#DDDDDD',
+        ...colorSchemas[0],
       },
       setTheme(themeColors: ThemeColors) {
         set((state: Store) => ({
