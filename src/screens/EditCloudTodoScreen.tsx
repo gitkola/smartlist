@@ -32,7 +32,6 @@ const ModalEditCloudTodo = () => {
     <ScreenEditListItem
       updateDate={() => {}}
       updateTime={() => {}}
-      listItem={listItem}
       updateItem={updateItem}
     />
   );
