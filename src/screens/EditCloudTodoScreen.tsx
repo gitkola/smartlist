@@ -24,8 +24,8 @@ const ModalEditCloudTodo = () => {
       date: date ? new Date(date)?.toUTCString() : null,
       time: time ? new Date(time)?.toUTCString() : null,
     };
-    const timeRef = ref(db, 'lists/' + user?.uid + '/todos/' + id);
-    set(timeRef, item);
+    const todoRef = ref(db, 'lists/' + user?.uid + '/todos/' + id);
+    set(todoRef, item);
   };
 
   return (
