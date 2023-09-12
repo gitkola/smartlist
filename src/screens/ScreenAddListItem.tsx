@@ -2,9 +2,11 @@ import React, {useState} from 'react';
 import {View, StatusBar} from 'react-native';
 import {HStack, VStack} from '@react-native-material/core';
 import {useNavigation} from '@react-navigation/native';
-import {Appbar, TextInput, useTheme} from 'react-native-paper';
+import {Button, TextInput, useTheme} from 'react-native-paper';
 import DismissKeyboardWithAvoidingView from '../hocs/DismissKeyboardWithAvoidingView';
 import DateTimeCustomPicker from '../components/DateTimeCustomPicker';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import HeaderScreenAddOrEdit from '../components/HeaderScreenAddOrEdit';
 
 type ScreenAddListItemProps = {
   newTitle: string;
@@ -31,6 +33,7 @@ const ScreenAddListItem = ({
 }: ScreenAddListItemProps) => {
   const navigation = useNavigation();
   const theme = useTheme();
+  const {top} = useSafeAreaInsets();
 
   const [applyDate, setApplyDate] = useState(false);
   const [applyTime, setApplyTime] = useState(false);
@@ -40,7 +43,7 @@ const ScreenAddListItem = ({
       <View style={{flex: 1}}>
         <StatusBar barStyle={'light-content'} />
         <VStack
-          pv={80}
+          pv={80 + top}
           spacing={16}
           ph={16}
           fill
@@ -108,37 +111,27 @@ const ScreenAddListItem = ({
               }}
             />
           )}
+          <VStack items="center">
+            <Button
+              icon="camera"
+              mode="contained"
+              onPress={() => navigation.navigate('camera' as never)}
+              style={{
+                width: 200,
+              }}>
+              Open Camera
+            </Button>
+          </VStack>
         </VStack>
-        <Appbar
-          elevated
-          mode="center-aligned"
-          style={{
-            backgroundColor: theme.colors.primary,
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-          }}>
-          <Appbar.Content
-            title={'Cancel'}
-            color={theme.colors.onPrimary}
-            onPress={() => navigation.goBack()}
-            style={{
-              left: -80,
-            }}
-          />
-          <Appbar.Content
-            title={'Add'}
-            color={theme.colors.onPrimary}
-            onPress={() => {
-              addListItem();
-              navigation.goBack();
-            }}
-            style={{
-              right: -80,
-            }}
-          />
-        </Appbar>
+        <HeaderScreenAddOrEdit
+          leftTitle="Cancel"
+          leftOnPress={navigation.goBack}
+          rightTitle="Add"
+          rightOnPress={() => {
+            addListItem();
+            navigation.goBack();
+          }}
+        />
       </View>
     </DismissKeyboardWithAvoidingView>
   );

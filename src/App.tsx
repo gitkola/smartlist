@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './config/firebase';
 import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -22,6 +22,18 @@ import {useAuthentication} from './hooks/useAuthentication';
 import CloudTodoScreen from './screens/CloudTodoScreen';
 import ModalEditCloudTodo from './screens/EditCloudTodoScreen';
 import ModalAddCloudTodo from './screens/AddCloudTodoScreen';
+import {Camera, CameraPermissionStatus} from 'react-native-vision-camera';
+import {CameraPage} from './screens/CameraPage';
+import {MediaPage} from './screens/MediaPage';
+
+export type RootStackParamList = {
+  drawer: undefined;
+  camera: undefined;
+  media: {
+    path: string;
+    type: 'video' | 'photo';
+  };
+};
 
 type DrawerParamsList = {
   cloudtodostack: undefined;
@@ -50,6 +62,7 @@ export type TobuyScreenProps = NativeStackScreenProps<
   'tobuy'
 >;
 
+const RootStack = createNativeStackNavigator<RootStackParamList>();
 const Drawer = createDrawerNavigator<DrawerParamsList>();
 const TodoStack = createNativeStackNavigator<TodoStackParamList>();
 const TobuyStack = createNativeStackNavigator<TobuyStackParamList>();
@@ -61,7 +74,6 @@ const TodoStackNavigator = () => (
       name="addTodo"
       component={ModalAddTodo}
       options={{
-        presentation: 'modal',
         orientation: 'portrait',
         animation: 'slide_from_bottom',
       }}
@@ -70,7 +82,6 @@ const TodoStackNavigator = () => (
       name="editTodo"
       component={ModalEditTodo}
       options={{
-        presentation: 'modal',
         orientation: 'portrait',
         animation: 'slide_from_bottom',
       }}
@@ -90,7 +101,6 @@ const CloudTodoStackNavigator = () => {
         name="addTodo"
         component={ModalAddCloudTodo}
         options={{
-          presentation: 'modal',
           orientation: 'portrait',
           animation: 'slide_from_bottom',
         }}
@@ -99,7 +109,6 @@ const CloudTodoStackNavigator = () => {
         name="editTodo"
         component={ModalEditCloudTodo}
         options={{
-          presentation: 'modal',
           orientation: 'portrait',
           animation: 'slide_from_bottom',
         }}
@@ -115,7 +124,6 @@ const TobuyStackNavigator = () => (
       name="addTobuy"
       component={ModalAddTobuy}
       options={{
-        presentation: 'modal',
         orientation: 'portrait',
         animation: 'slide_from_bottom',
       }}
@@ -124,7 +132,6 @@ const TobuyStackNavigator = () => (
       name="editTobuy"
       component={ModalEditTobuy}
       options={{
-        presentation: 'modal',
         orientation: 'portrait',
         animation: 'slide_from_bottom',
       }}
@@ -148,7 +155,17 @@ function DrawerStackNavigator() {
   );
 }
 
-export default function App(): JSX.Element {
+function RootStackNavigator() {
+  return (
+    <RootStack.Navigator screenOptions={{headerShown: false}}>
+      <RootStack.Screen name="drawer" component={DrawerStackNavigator} />
+      <RootStack.Screen name="camera" component={CameraPage} />
+      <RootStack.Screen name="media" component={MediaPage} />
+    </RootStack.Navigator>
+  );
+}
+
+export default function App(): JSX.Element | null {
   const settingsTheme = useSettingsTheme();
   const SettingsTheme = {
     ...MD3LightTheme,
@@ -158,18 +175,30 @@ export default function App(): JSX.Element {
     },
   };
 
+  const [cameraPermission, setCameraPermission] =
+    useState<CameraPermissionStatus>();
+  const [microphonePermission, setMicrophonePermission] =
+    useState<CameraPermissionStatus>();
+
   useEffect(() => {
     Orientation.lockToPortrait();
     setTimeout(() => {
       SplashScreen.hide();
     }, 1000);
-  });
+    Camera.getCameraPermissionStatus().then(setCameraPermission);
+    Camera.getMicrophonePermissionStatus().then(setMicrophonePermission);
+  }, []);
+
+  if (cameraPermission == null || microphonePermission == null) {
+    // still loading
+    return null;
+  }
 
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <PaperProvider theme={SettingsTheme}>
         <NavigationContainer>
-          <DrawerStackNavigator />
+          <RootStackNavigator />
         </NavigationContainer>
       </PaperProvider>
     </GestureHandlerRootView>
